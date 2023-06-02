@@ -146,31 +146,11 @@ background-color: rgb(243, 243, 243);}</string>
      <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QtMaterialRaisedButton" name="selectPicture">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>60</y>
-      <width>381</width>
-      <height>381</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Consolas</family>
-      <pointsize>15</pointsize>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Select an image...</string>
-    </property>
-   </widget>
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>60</y>
+      <x>50</x>
+      <y>50</y>
       <width>381</width>
       <height>381</height>
      </rect>

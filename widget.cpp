@@ -24,7 +24,6 @@ Widget::Widget(QWidget *parent)
     ui->function2->setHaloVisible(false);
     ui->function3->setHaloVisible(false);
     ui->function4->setHaloVisible(false);
-    ui->selectPicture->setHaloVisible(false);
 
     //修改颜色
     ui->startCompression->setBackgroundColor(QColor(0,128,128));
@@ -33,15 +32,14 @@ Widget::Widget(QWidget *parent)
     ui->function2->setBackgroundColor(QColor(0,128,128));
     ui->function3->setBackgroundColor(QColor(0,128,128));
     ui->function4->setBackgroundColor(QColor(0,128,128));
-    ui->selectPicture->setBackgroundColor(QColor(200,200,200));
-    //修改半径
+
+    //修改圆角半径
     ui->startCompression->setCornerRadius(5);
     ui->uploadPic->setCornerRadius(5);
     ui->function1->setCornerRadius(5);
     ui->function2->setCornerRadius(5);
     ui->function3->setCornerRadius(5);
     ui->function4->setCornerRadius(5);
-    ui->selectPicture->setCornerRadius(5);
 
 
 
