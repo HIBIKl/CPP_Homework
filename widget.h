@@ -38,6 +38,9 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+private slots:
+    void on_selectPicture_clicked();
+
 private:
     Ui::Widget *ui;
 };
