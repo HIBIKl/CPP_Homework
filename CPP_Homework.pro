@@ -164,3 +164,15 @@ SUBDIRS += \
 RESOURCES += \
     resources.qrc \
     resources.qrc
+
+INCLUDEPATH += D:/opencv3.4.16/build/include \
+               D:/opencv3.4.16/build/include/opencv \
+               D:/opencv3.4.16/build/include/opencv2 \
+               D:/opencv3.4.16/build/x64/vc15/bin \
+               D:/opencv3.4.16/build/x64/vc15/lib
+
+LIBS += -LD:/opencv3.4.16/build/x64/vc15/lib/ -lopencv_world3416
+LIBS += -LD:/opencv3.4.16/build/x64/vc15/lib/ -lopencv_world3416d
+
+INCLUDEPATH += D:/opencv3.4.16/build/x64/vc15
+DEPENDPATH += D:/opencv3.4.16/build/x64/vc15

@@ -9,6 +9,10 @@
 #include <QColor>
 #include <QFileDialog>
 #include <QTextEdit>
+
+#include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/calib3d/calib3d.hpp>
 using namespace Material;
 
     //--------------------------------------------//
@@ -57,7 +61,7 @@ Widget::Widget(QWidget *parent)
 
     //其他的一些细节
     ui->selectPicture->setCursor(Qt::OpenHandCursor);
-    ui->textEdit->setFocus(Qt::ActiveWindowFocusReason);
+    ui->textOutput->setFocus(Qt::ActiveWindowFocusReason);
 
 //拨动按钮
 //    QtMaterialToggle *toggle=new QtMaterialToggle(this);
@@ -90,13 +94,13 @@ void Widget::on_selectPicture_clicked()
     //选择单个文件
     QString curPath=QDir::currentPath();//获取系统当前目录
     //获取应用程序的路径
-    QString dlgTitle="选择一个文件"; //对话框标题
-    QString filter="图片文件(*.jpg *.png *.bmp);;所有文件(*.*)"; //文件过滤器
+    QString dlgTitle="Select a file:"; //对话框标题
+    QString filter="Image(*.jpg *.png *.bmp)"; //文件过滤器
     QString aFileName=QFileDialog::getOpenFileName(this,dlgTitle,curPath,filter);
-    std::string argv[4];
-    //if (!aFileName.isEmpty())
-    //    ui->plainTextEdit->append(aFileName);
+    const std::string argvName = aFileName.toStdString();
+
+    cv::Mat img = cv::imread(argvName); //路径不能有汉字
+    cv::imshow("img",img);
+    if (!aFileName.isEmpty())
+        ui->textOutput->appendPlainText(aFileName);
 }
-
-
-

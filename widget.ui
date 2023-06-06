@@ -290,23 +290,14 @@ background-color: rgb(243, 243, 243);}</string>
      </widget>
     </widget>
    </widget>
-   <widget class="QtMaterialTextField" name="textEdit">
+   <widget class="QPlainTextEdit" name="textOutput">
     <property name="geometry">
      <rect>
       <x>900</x>
-      <y>390</y>
+      <y>380</y>
       <width>301</width>
-      <height>41</height>
+      <height>81</height>
      </rect>
-    </property>
-    <property name="focusPolicy">
-     <enum>Qt::StrongFocus</enum>
-    </property>
-    <property name="markdown">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>output is here...</string>
     </property>
    </widget>
    <zorder>scrollArea</zorder>
@@ -324,7 +315,7 @@ background-color: rgb(243, 243, 243);}</string>
    <zorder>radioButton_5</zorder>
    <zorder>radioButton_6</zorder>
    <zorder>horizontalSlider</zorder>
-   <zorder>textEdit</zorder>
+   <zorder>textOutput</zorder>
   </widget>
  </widget>
  <customwidgets>
@@ -344,14 +335,9 @@ background-color: rgb(243, 243, 243);}</string>
    <header location="global">qtmaterialslider.h</header>
   </customwidget>
   <customwidget>
-   <class>QtMaterialTextField</class>
-   <extends>QTextEdit</extends>
-   <header location="global">qtmaterialtextfield.h</header>
-  </customwidget>
-  <customwidget>
    <class>QtMaterialScrollBar</class>
    <extends>QScrollBar</extends>
-   <header>qtmaterialscrollbar.h</header>
+   <header location="global">qtmaterialscrollbar.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

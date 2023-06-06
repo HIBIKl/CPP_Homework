@@ -1,4 +1,4 @@
-﻿#include "Header.h"
+﻿#include "BigHeader.h"
 
 //RNAM=矩形NAM
 //使用改良isSameBlock阴影法判断是否同类块
