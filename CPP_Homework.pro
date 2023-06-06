@@ -8,12 +8,20 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+#添加文件资源
 SOURCES += \
     main.cpp \
-    widget.cpp
+    widget.cpp \
+    ./hzc/upload/Diagonal_Priority.cpp \
+    ./hzc/upload/Horizonal_Priority.cpp \
+    ./hzc/upload/IBR.cpp \
+    ./hzc/upload/picture.cpp
+
 
 HEADERS += \
-    widget.h
+    widget.h \
+    ./hzc/upload/BigHeader.h \
+    ./hzc/upload/picture.h
 
 FORMS += \
     widget.ui
@@ -151,7 +159,7 @@ HEADERS += \
     ./MaterialSDK/components/qtmateriallistitem.h \
     ./MaterialSDK/components/qtmateriallistitem_p.h
 
-#import Material SDK(导入Material组件库的SDK)
+#导入Material组件库的SDK
 #填绝对路径，否则无法编译
 LIBS += F:/SDK/MaterialSDK/staticlib/libcomponents.a
 INCLUDEPATH += ./MaterialSDK/components
@@ -165,6 +173,8 @@ RESOURCES += \
     resources.qrc \
     resources.qrc
 
+
+#opencv3.4.16环境变量
 INCLUDEPATH += D:/opencv3.4.16/build/include \
                D:/opencv3.4.16/build/include/opencv \
                D:/opencv3.4.16/build/include/opencv2 \

@@ -104,3 +104,9 @@ void Widget::on_selectPicture_clicked()
     if (!aFileName.isEmpty())
         ui->textOutput->appendPlainText(aFileName);
 }
+
+void Widget::on_function1_clicked() //实现弹出窗口dialog
+{
+
+}
+

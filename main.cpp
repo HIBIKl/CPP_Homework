@@ -1,7 +1,14 @@
+//组件库头文件
 #include "widget.h"
 #include <QApplication>
 #include <QSplashScreen>
 #include <QThread>
+#include <QtWidgets/QApplication>
+//算法头文件
+#include "./hzc/upload/picture.h"
+#include "./hzc/upload/BigHeader.h"
+
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
