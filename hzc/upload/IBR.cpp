@@ -1,4 +1,4 @@
-#include "HeaderI.h"
+#include "BigHeader.h"
 double BPP (map<unsigned int,ColorNode> &color_list ,int xn , int yn , vector<char> &Q )
 { 
 	int a1=0,a2=0,a3=0;

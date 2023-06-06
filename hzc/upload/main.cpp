@@ -1,8 +1,8 @@
 ﻿#include "picture.h"
-#include "Header.h"
+#include "BigHeader.h"
 #include <QtWidgets/QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
     picture w;
