@@ -18,3 +18,9 @@ connect函数写出来了
 stc代码仍在研究如何加入
 测试中未出现bug
 现在等待传参
+
+0607
+尝试将picture与widget合并
+缺少qt库 我无法排bug
+
+合并后的文件为widget.cpp和widget.h可以尝试使用
