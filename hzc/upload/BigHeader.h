@@ -14,7 +14,7 @@
 using namespace cv;
 using namespace std;
 
-//ï¿½ï¿½É«ï¿½ï¿½
+//ÑÕÉ«±í
 class Color
 {
 	Point lt;
@@ -29,14 +29,14 @@ public:
 	void setGrey(Scalar grey) { this->grey = grey; }
 	Scalar getGrey() { return grey; }
 };
-//ï¿½ï¿½Ê±
+//¼ÆÊ±
 class MyTimer {
 private:
 	int _freq;
 	LARGE_INTEGER _begin;
 	LARGE_INTEGER _end;
 public:
-	long costTime;            // ï¿½ï¿½ï¿½Ñµï¿½Ê±ï¿½ï¿½(ï¿½ï¿½È·ï¿½ï¿½Î¢ï¿½ï¿½)
+	long costTime;            // »¨·ÑµÄÊ±¼ä(¾«È·µ½Î¢Ãë)
 public:
 	MyTimer() {
 		LARGE_INTEGER tmp;
@@ -44,14 +44,14 @@ public:
 		_freq = tmp.QuadPart;
 		costTime = 0;
 	}
-	void Start() {            // ï¿½ï¿½Ê¼ï¿½ï¿½Ê±
+	void Start() {            // ¿ªÊ¼¼ÆÊ±
 		QueryPerformanceCounter(&_begin);
 	}
-	void End() {                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
+	void End() {                // ½áÊø¼ÆÊ±
 		QueryPerformanceCounter(&_end);
 		costTime = (long)((_end.QuadPart - _begin.QuadPart) * 1000 / _freq);
 	}
-	void Reset() {            // ï¿½ï¿½Ê±ï¿½ï¿½0
+	void Reset() {            // ¼ÆÊ±Çå0
 		costTime = 0;
 	}
 };
@@ -75,7 +75,7 @@ struct Block
 
 struct ColorNode
 {
-	//0ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½Îª1ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½Îª1ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//0ÆÕÍ¨¾ØÕó£¬1¿íÎª1¾ØÕó£¬2³¤Îª1¾ØÕó£¬3¹ÂÁ¢µã
 	int kind, g1, g2, g3, g4;
 	ColorNode(int k, int gg1, int gg2 = -1, int gg3 = -1, int gg4 = -1) :kind(k), g1(gg1), g2(gg2), g3(gg3), g4(gg4) {};
 	ColorNode() {};
