@@ -1,5 +1,5 @@
 #pragma once
-#include<opencv.hpp>
+#include<opencv.hpp>//不知道是否能会与widget.cpp中opencv2/opencv。hpp冲突
 #include <opencv2\imgproc\types_c.h>
 #include<iostream>
 #include<vector>
@@ -17,68 +17,68 @@ using namespace std;
 //颜色表
 class Color
 {
-    Point lt;
-    Point rb;
-    Scalar grey;
+	Point lt;
+	Point rb;
+	Scalar grey;
 public:
-    Color() { grey[0] = grey[1] = grey[2] = grey[3] = -1; }
-    void setLt(Point lt) { this->lt = lt; }
-    void setRb(Point rb) { this->rb = rb; }
-    Point getLt() { return lt; }
-    Point getRb() { return rb; }
-    void setGrey(Scalar grey) { this->grey = grey; }
-    Scalar getGrey() { return grey; }
+	Color() { grey[0] = grey[1] = grey[2] = grey[3] = -1; }
+	void setLt(Point lt) { this->lt = lt; }
+	void setRb(Point rb) { this->rb = rb; }
+	Point getLt() { return lt; }
+	Point getRb() { return rb; }
+	void setGrey(Scalar grey) { this->grey = grey; }
+	Scalar getGrey() { return grey; }
 };
 //计时
 class MyTimer {
 private:
-    int _freq;
-    LARGE_INTEGER _begin;
-    LARGE_INTEGER _end;
+	int _freq;
+	LARGE_INTEGER _begin;
+	LARGE_INTEGER _end;
 public:
-    long costTime;            // 花费的时间(精确到微秒)
+	long costTime;            // 花费的时间(精确到微秒)
 public:
-    MyTimer() {
-        LARGE_INTEGER tmp;
-        QueryPerformanceFrequency(&tmp);
-        _freq = tmp.QuadPart;
-        costTime = 0;
-    }
-    void Start() {            // 开始计时
-        QueryPerformanceCounter(&_begin);
-    }
-    void End() {                // 结束计时
-        QueryPerformanceCounter(&_end);
-        costTime = (long)((_end.QuadPart - _begin.QuadPart) * 1000 / _freq);
-    }
-    void Reset() {            // 计时清0
-        costTime = 0;
-    }
+	MyTimer() {
+		LARGE_INTEGER tmp;
+		QueryPerformanceFrequency(&tmp);
+		_freq = tmp.QuadPart;
+		costTime = 0;
+	}
+	void Start() {            // 开始计时
+		QueryPerformanceCounter(&_begin);
+	}
+	void End() {                // 结束计时
+		QueryPerformanceCounter(&_end);
+		costTime = (long)((_end.QuadPart - _begin.QuadPart) * 1000 / _freq);
+	}
+	void Reset() {            // 计时清0
+		costTime = 0;
+	}
 };
 
 #define INT_MAX 2147483647
 struct Location
 {
-    int x1;
-    int x2;
-    int y1;
-    int y2;
-    Location(int ax, int ay, int bx, int by) :x1(ax), y1(ay), x2(bx), y2(by) {};
-    Location() {};
+	int x1;
+	int x2;
+	int y1;
+	int y2;
+	Location(int ax, int ay, int bx, int by) :x1(ax), y1(ay), x2(bx), y2(by) {};
+	Location() {};
 };
 
 struct Block
 {
-    int start_pos;
-    int intervals;
+	int start_pos;
+	int intervals;
 };
 
 struct ColorNode
 {
-    //0普通矩阵，1宽为1矩阵，2长为1矩阵，3孤立点
-    int kind, g1, g2, g3, g4;
-    ColorNode(int k, int gg1, int gg2 = -1, int gg3 = -1, int gg4 = -1) :kind(k), g1(gg1), g2(gg2), g3(gg3), g4(gg4) {};
-    ColorNode() {};
+	//0普通矩阵，1宽为1矩阵，2长为1矩阵，3孤立点
+	int kind, g1, g2, g3, g4;
+	ColorNode(int k, int gg1, int gg2 = -1, int gg3 = -1, int gg4 = -1) :kind(k), g1(gg1), g2(gg2), g3(gg3), g4(gg4) {};
+	ColorNode() {};
 };
 
 void StartNamCut(const IplImage* img, CvMat* markMatrix, CvMat* R, map<unsigned int, ColorNode>& color_list, map<unsigned int, Location>& block_list, int height, int width, double margin, int& num);

@@ -449,7 +449,7 @@ void RestoreImage(IplImage *img,CvMat *markMatrix,CvMat *R,map<unsigned int,Colo
 	for(int i = 1;i<= color_list.size();i++)
 	{
 		map<unsigned int,ColorNode>::iterator it = color_list.find(i);
-        //先查找下一个未计算的分块 起点坐标
+		//�Ȳ�����һ��δ����ķֿ� �������
 		while(x2<width)
 		{
 			if((markMatrix->data.ptr + markMatrix->step*y2)[x2++] == 0)
@@ -466,13 +466,13 @@ void RestoreImage(IplImage *img,CvMat *markMatrix,CvMat *R,map<unsigned int,Colo
 
 		x1 = --x2;
 
-        //再查找出这个块的 (x1,y1) (x2,y2)
-        if(0 == (it->second).kind)
+		//�ٲ��ҳ������� (x1,y1) (x2,y2)
+		if(0 == (it->second).kind)
 		{
 			while(x2<width)
-            {
-                //x2要先走一步
-                if((R->data.ptr + R->step*y2)[++x2]!=0 || (markMatrix->data.ptr + markMatrix->step*y2)[x2] == 1)
+			{
+				//x2Ҫ����һ��
+				if((R->data.ptr + R->step*y2)[++x2]!=0 || (markMatrix->data.ptr + markMatrix->step*y2)[x2] == 1)
 					break;
 			}
 

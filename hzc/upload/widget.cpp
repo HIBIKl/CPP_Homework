@@ -1,49 +1,129 @@
-﻿//#include "Header.h"
+#include "widget.h"
+#include "ui_widget.h"
+#include<qtmaterialtoggle.h>
+#include<qtmaterialflatbutton.h>
+#include<qtmaterialflatbutton_internal.h>
+#include<qtmaterialcircularprogress.h>
+#include<qtmaterialcircularprogress_internal.h>
+#include <qtmaterialraisedbutton.h>
+#include <QColor>
+#include <QFileDialog>
+#include <QTextEdit>
+
+#include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
+#include <opencv2/calib3d/calib3d.hpp>
+
+//#include "Header.h"
 //#include"Header Dia.h"
 #include "picture.h"
 //#include"HeaderI.h"
 //#include"HeaderS.h"
 #include"BigHeader.h"
 
-picture::picture(QWidget *parent)
+using namespace Material;
+
+    //--------------------------------------------//
+    //需要实现的特性：
+    //1.未选择参数时弹窗提醒选择参数（图片、sigma、算法等）
+    //2.处理完之后弹窗提醒
+    //3.QtMaterialScrollBar实现控制台实时输出处理日志
+    //4.一点点彩蛋...?
+    //--------------------------------------------//
+
+
+//23.6.5 在ui展示了部分widget的实现效果
+Widget::Widget(QWidget *parent)
     : QWidget(parent)
+    , ui(new Ui::Widget)
 {
-    ui.setupUi(this);
-	btn1 = new QPushButton;
-	btn1->setText("点击就送屠龙宝刀");
-	btn1->show();
-	btn2 = new QPushButton;
-	btn2->setText("一刀999");
-	btn2->show();
-	//下拉复选框如何实现？if？需要对接
-	connect(this->btn1, SIGNAL(QPushButton::clicked), this,SLOT(startAdjustH(char** argv)));
-	//分别输入1.原灰度图Mat类 （路径）？ 2.转灰度图文件名？？？
-	//3.解码后的文件名？？？？？ 4.EPSILON（变量名为xgm 类型为int）
-	
+    ui->setupUi(this);
+    setWindowTitle("Homework Test");
+
+
+    //关闭恼人的特性
+    ui->startCompression->setHaloVisible(false);
+    ui->uploadPic->setHaloVisible(false);
+    ui->function1->setHaloVisible(false);
+    //ui->function2->setHaloVisible(false);
+    ui->function3->setHaloVisible(false);
+    ui->function4->setHaloVisible(false);
+    ui->selectPicture->setHaloVisible(false);
+
+    //修改颜色
+    ui->startCompression->setBackgroundColor(QColor(0,128,128));
+    ui->uploadPic->setBackgroundColor(QColor(0,128,128));
+    ui->function1->setBackgroundColor(QColor(0,128,128));
+    //ui->function2->setBackgroundColor(QColor(0,128,128));
+    ui->function3->setBackgroundColor(QColor(0,128,128));
+    ui->function4->setBackgroundColor(QColor(0,128,128));
+    ui->selectPicture->setBackgroundColor(QColor(0,128,128));
+
+    //修改圆角半径
+    ui->startCompression->setCornerRadius(5);
+    ui->uploadPic->setCornerRadius(5);
+    ui->function1->setCornerRadius(5);
+    //ui->function2->setCornerRadius(5);
+    ui->function3->setCornerRadius(5);
+    ui->function4->setCornerRadius(5);
+
+    //其他的一些细节
+    ui->selectPicture->setCursor(Qt::OpenHandCursor);
+    ui->textOutput->setFocus(Qt::ActiveWindowFocusReason);
+
+//拨动按钮
+//    QtMaterialToggle *toggle=new QtMaterialToggle(this);
+//(x坐标,y坐标,长度,粗细)
+//    toggle->setGeometry(30,30,100,50);
+//扁平按钮
+//    QtMaterialRaisedButton *btn=new QtMaterialRaisedButton(this);
+//    btn->setForegroundColor(QColor(0,198,231));
+//    btn->setGeometry(100,100,250,40);
+//    btn->setText("I am a flat button");
+//    btn->applyPreset(Material::FlatPreset);
+//    //设置字体
+//    QFont font;
+//    font.setFamily("Consolas");
+//    font.setPixelSize(25);
+//    btn->setFont(font);
+//加载动画
+//    QtMaterialCircularProgress * circular = new QtMaterialCircularProgress(this);
+//    circular->setColor(QColor::fromRgb(0,0,127));
+//    circular->setGeometry(200,200,200,16);
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+
+void Widget::on_selectPicture_clicked()
+{
+    //选择单个文件
+    QString curPath=QDir::currentPath();//获取系统当前目录
+    //获取应用程序的路径
+    QString dlgTitle="Select a file:"; //对话框标题
+    QString filter="Image(*.jpg *.png *.bmp)"; //文件过滤器
+    QString aFileName=QFileDialog::getOpenFileName(this,dlgTitle,curPath,filter);
+    const std::string argvName = aFileName.toStdString();
+
+    cv::Mat img = cv::imread(argvName); //路径不能有汉字
+    cv::imshow("img",img);
+    if (!aFileName.isEmpty())
+        ui->textOutput->appendPlainText(aFileName);
+}
+
+void Widget::on_function1_clicked() //实现弹出窗口dialog
+{
 
 }
 
-picture::~picture()
-{}
 
-//void picture::conTransport(int )
-//{
-//}
-//void picture::sigClicked()
-//{
-//	char** adjust;
-//	//emit 	conTransport(adjust);
-//}
-////Mat picture::importPic()
-//{
-//	Mat rawPic;
-//	Mat scr = imread("D:/lovely pic/6489669122.jpg");
-//	return rawPic;
-//}
+//各类算法 其中H=hotizonal priority,D=diagonal, I=IBR,STC尚未加入 
 
-void picture::startAdjustH(char** argv)
+void Widget::startAdjustH(char** argv)
 {
-	
+
 	Mat img = imread(argv[1]);
 	if (!img.empty()) {
 		namedWindow("原图灰度图像", 1);
@@ -113,7 +193,7 @@ void picture::startAdjustH(char** argv)
 
 }
 
-void picture::startAdjustD(char** argv)
+void Widget::startAdjustD(char** argv)
 {
 	Mat img = imread(argv[1]);
 	if (!img.empty()) {
@@ -177,133 +257,133 @@ void picture::startAdjustD(char** argv)
 	}
 }
 
-void picture::startAdjustI(char** argv)
+void Widget::startAdjustI(char** argv)
 {
 	IplImage* img = NULL;
 
-	
 
-		cvNamedWindow("原图灰度图像", 1);
-		cvShowImage("原图灰度图像", img);
-		/*一，分割同类块及编码*/
-		int height = img->height;
-		int width = img->width;
 
-		CvMat* markMatrix = cvCreateMat(height, width, CV_8UC1);
-		cvSetZero(markMatrix);
-		CvMat* R = cvCreateMat(height, width, CV_8UC1);
-		cvSetZero(R);
+	cvNamedWindow("原图灰度图像", 1);
+	cvShowImage("原图灰度图像", img);
+	/*一，分割同类块及编码*/
+	int height = img->height;
+	int width = img->width;
 
-		int num = 0;
-		map<unsigned int, ColorNode> color_list;
-		map<unsigned int, Location> block_list;
-		double margin = atof(argv[4]);
-		time_t begin, end;
-		begin = clock();
-		/*分块*/
-		StartNamCut(img, markMatrix, R, color_list, block_list, height, width, margin, num);
+	CvMat* markMatrix = cvCreateMat(height, width, CV_8UC1);
+	cvSetZero(markMatrix);
+	CvMat* R = cvCreateMat(height, width, CV_8UC1);
+	cvSetZero(R);
 
-		/*矩阵编码*/
-		vector<char> Q;
-		EnCode(R, height, width, Q);
-		end = clock();
+	int num = 0;
+	map<unsigned int, ColorNode> color_list;
+	map<unsigned int, Location> block_list;
+	double margin = atof(argv[4]);
+	time_t begin, end;
+	begin = clock();
+	/*分块*/
+	StartNamCut(img, markMatrix, R, color_list, block_list, height, width, margin, num);
 
-		cout << "编码压缩花费:" << end - begin << "ms" << endl;
+	/*矩阵编码*/
+	vector<char> Q;
+	EnCode(R, height, width, Q);
+	end = clock();
 
-		/*for(int i =0;i<height;i++)
+	cout << "编码压缩花费:" << end - begin << "ms" << endl;
+
+	/*for(int i =0;i<height;i++)
+	{
+		for(int j=0;j<width;j++)
 		{
-			for(int j=0;j<width;j++)
-			{
-				cout<<(int)(R->data.ptr+i*R->step)[j]<<" ";
-			}
-			cout<<endl;
+			cout<<(int)(R->data.ptr+i*R->step)[j]<<" ";
 		}
+		cout<<endl;
+	}
 
 
-		cout<<"编码共："<<Q.size()<<"位"<<endl;
-		for (vector<char>::iterator it = Q.begin();it != Q.end();it++)
+	cout<<"编码共："<<Q.size()<<"位"<<endl;
+	for (vector<char>::iterator it = Q.begin();it != Q.end();it++)
+	{
+		cout<<*it;
+	}*/
+
+	/*for (vector<ColorNode>::iterator it = colorList.begin();it != colorList.end();it++)
+	{
+		cout<<(*it).g1<<" "<<(*it).g2<<" "<<(*it).g3<<" "<<(*it).g4<<endl;
+	}*/
+
+	/*二，还原图像矩阵及图像*/
+	CvMat* T = cvCreateMat(height, width, CV_8UC1);
+	cvSetZero(T);
+	begin = clock();
+	Decode(T, height, width, Q);
+
+
+	/*cout<<endl;
+	for(int i =0;i<height;i++)
+	{
+		for(int j=0;j<width;j++)
 		{
-			cout<<*it;
-		}*/
-
-		/*for (vector<ColorNode>::iterator it = colorList.begin();it != colorList.end();it++)
-		{
-			cout<<(*it).g1<<" "<<(*it).g2<<" "<<(*it).g3<<" "<<(*it).g4<<endl;
-		}*/
-
-		/*二，还原图像矩阵及图像*/
-		CvMat* T = cvCreateMat(height, width, CV_8UC1);
-		cvSetZero(T);
-		begin = clock();
-		Decode(T, height, width, Q);
-
-
-		/*cout<<endl;
-		for(int i =0;i<height;i++)
-		{
-			for(int j=0;j<width;j++)
-			{
-				cout<<(int)(T->data.ptr+i*T->step)[j]<<" ";
-			}
-			cout<<endl;
-		}*/
-
-
-		IplImage* newImg = cvCreateImage(cvSize(width, height), 8, 1);
-		RestoreImage(newImg, markMatrix, T, color_list, height, width);
-		end = clock();
-
-
-		cout << "还原图像耗时:" << end - begin << "ms" << endl;
-
-
-		cout << "块数:" << num << endl;
-		cout << "PSNR值:" << PSNR(img, newImg) << endl;
-		double BPPValue = BPP(color_list, width, height, Q);
-		cout << "BPP值:" << BPPValue << endl;
-		cout << "CR值:" << 8.0 / BPPValue << endl;
-
-		cvNamedWindow("压缩图灰度图像", 1);
-		cvShowImage("压缩图灰度图像", newImg);
-		cvSaveImage(argv[2], img, 0);
-		cvSaveImage(argv[3], newImg, 0);
-
-		//画分割图
-		IplImage* sketch;
-		int xr, yr;
-		int sketchXn, sketchYn;
-		if (height >= 256 || width >= 256)
-		{
-			xr = 1, yr = 1, sketchXn = height, sketchYn = width;
-			sketch = cvCreateImage(cvGetSize(img), IPL_DEPTH_8U, 1);
+			cout<<(int)(T->data.ptr+i*T->step)[j]<<" ";
 		}
-		else
-		{
-			xr = 511 / (height - 1);
-			yr = 511 / (width - 1);
-			sketchXn = 512, sketchYn = 512;
-			sketch = cvCreateImage(cvSize(512, 512), IPL_DEPTH_8U, 1);
-		}
+		cout<<endl;
+	}*/
 
-		for (int i = 0; i < sketchYn; i++)
+
+	IplImage* newImg = cvCreateImage(cvSize(width, height), 8, 1);
+	RestoreImage(newImg, markMatrix, T, color_list, height, width);
+	end = clock();
+
+
+	cout << "还原图像耗时:" << end - begin << "ms" << endl;
+
+
+	cout << "块数:" << num << endl;
+	cout << "PSNR值:" << PSNR(img, newImg) << endl;
+	double BPPValue = BPP(color_list, width, height, Q);
+	cout << "BPP值:" << BPPValue << endl;
+	cout << "CR值:" << 8.0 / BPPValue << endl;
+
+	cvNamedWindow("压缩图灰度图像", 1);
+	cvShowImage("压缩图灰度图像", newImg);
+	cvSaveImage(argv[2], img, 0);
+	cvSaveImage(argv[3], newImg, 0);
+
+	//画分割图
+	IplImage* sketch;
+	int xr, yr;
+	int sketchXn, sketchYn;
+	if (height >= 256 || width >= 256)
+	{
+		xr = 1, yr = 1, sketchXn = height, sketchYn = width;
+		sketch = cvCreateImage(cvGetSize(img), IPL_DEPTH_8U, 1);
+	}
+	else
+	{
+		xr = 511 / (height - 1);
+		yr = 511 / (width - 1);
+		sketchXn = 512, sketchYn = 512;
+		sketch = cvCreateImage(cvSize(512, 512), IPL_DEPTH_8U, 1);
+	}
+
+	for (int i = 0; i < sketchYn; i++)
+	{
+		uchar* ptrsketch = (uchar*)(sketch->imageData + i * sketch->widthStep);
+		for (int j = 0; j < sketchXn; j++)
 		{
-			uchar* ptrsketch = (uchar*)(sketch->imageData + i * sketch->widthStep);
-			for (int j = 0; j < sketchXn; j++)
-			{
-				ptrsketch[j] = 255;
-			}
+			ptrsketch[j] = 255;
 		}
-		for (int i = 0; i < block_list.size(); i++)
-		{
-			if (block_list[i].x1 == 0 && block_list[i].y1 == 0)
-				cvRectangle(sketch, cvPoint(block_list[i].x1, block_list[i].y1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
-			else   if (block_list[i].x1 == 0 && block_list[i].y1 != 0)
-				cvRectangle(sketch, cvPoint(block_list[i].x1, block_list[i].y1 - 1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
-			else   if (block_list[i].x1 != 0 && block_list[i].y1 == 0)
-				cvRectangle(sketch, cvPoint(block_list[i].x1 - 1, block_list[i].y1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
-			else   if (block_list[i].x1 != 0 && block_list[i].y1 != 0)
-				cvRectangle(sketch, cvPoint(block_list[i].x1 - 1, block_list[i].y1 - 1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
-		
+	}
+	for (int i = 0; i < block_list.size(); i++)
+	{
+		if (block_list[i].x1 == 0 && block_list[i].y1 == 0)
+			cvRectangle(sketch, cvPoint(block_list[i].x1, block_list[i].y1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
+		else   if (block_list[i].x1 == 0 && block_list[i].y1 != 0)
+			cvRectangle(sketch, cvPoint(block_list[i].x1, block_list[i].y1 - 1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
+		else   if (block_list[i].x1 != 0 && block_list[i].y1 == 0)
+			cvRectangle(sketch, cvPoint(block_list[i].x1 - 1, block_list[i].y1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
+		else   if (block_list[i].x1 != 0 && block_list[i].y1 != 0)
+			cvRectangle(sketch, cvPoint(block_list[i].x1 - 1, block_list[i].y1 - 1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
+
 		cvShowImage("分割示意图", sketch);
 
 		cvWaitKey();
@@ -696,5 +776,3 @@ void picture::startAdjustI(char** argv)
 //	char zyp;
 //	cin >> zyp;
 //}
-
-
