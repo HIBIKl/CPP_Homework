@@ -12,15 +12,22 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     widget.cpp \
-    ./hzc/upload/Diagonal_Priority.cpp \
-    ./hzc/upload/Horizonal_Priority.cpp \
-    ./hzc/upload/IBR.cpp
+    Diag_and_Hori.cpp \
+    IBR.cpp \
+    STC.cpp \
+    main_algorithm.cpp
+    #./hzc/upload/Diagonal_Priority.cpp \
+    #./hzc/upload/Horizonal_Priority.cpp \
+    #./hzc/upload/IBR.cpp
 
 
 
 HEADERS += \
     widget.h \
-    ./hzc/upload/BigHeader.h
+    Diag_and_Hori.h \
+    IBR.h \
+    STC.h
+    #./hzc/upload/BigHeader.h
 
 FORMS += \
     widget.ui

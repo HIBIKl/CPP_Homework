@@ -11,7 +11,7 @@ int main(int argc, char** argv)//·Ö±ğÊäÈë1.Ô­»Ò¶ÈÍ¼ 2.×ª»Ò¶ÈÍ¼ÎÄ¼şÃû 3.½âÂëºóµÄÎ
 			/*Ò»£¬·Ö¸îÍ¬Àà¿é¼°±àÂë*/
 			int M = img.rows;
 			int N = img.cols;
-
+			
 			Mat img_gray = img;
 			cvtColor(img, img_gray, CV_BGR2GRAY);
 			Mat markMatrix = Mat::zeros(M, N, CV_8UC1);

@@ -42,9 +42,9 @@ private slots:
     void on_selectPicture_clicked();
 public slots:
     /*Mat importPic();*/
-    void startAdjustH(char**);//用于压缩Horizonal
-    void startAdjustD(char**);//用于压缩Diagonal
-    void startAdjustI(char**);//IBR
+    //void startAdjustH(char**);//用于压缩Horizonal
+    //void startAdjustD(char**);//用于压缩Diagonal
+    //void startAdjustI(char**);//IBR
     //void startAdjustS(char**);//STC
 signals:
     //void sigClicked();//信号函数链接
