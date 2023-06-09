@@ -1,7 +1,8 @@
 //#include "Header Dia.h"
 //#include"Header.h"
-#include"BigHeader.h"
-////使用改良isSameBlock阴影法判断是否同类块
+#include"./hzc/upload/BigHeader.h"
+//使用改良isSameBlock阴影法判断是否同类块
+
 //bool isSameBlock(Mat f,Mat mark, Point lt, Point rb,int xgm)
 //{
 //	uchar g1 = f.at<uchar>(lt);

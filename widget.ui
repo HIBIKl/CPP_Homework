@@ -10,18 +10,6 @@
     <height>800</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>1280</width>
-    <height>800</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>1280</width>
-    <height>800</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Widget</string>
   </property>
@@ -37,18 +25,6 @@
      <height>800</height>
     </rect>
    </property>
-   <property name="minimumSize">
-    <size>
-     <width>1280</width>
-     <height>800</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>1280</width>
-     <height>800</height>
-    </size>
-   </property>
    <property name="styleSheet">
     <string notr="true">#mainDisplayWidget{
 background-color: rgb(243, 243, 243);}</string>
@@ -56,7 +32,7 @@ background-color: rgb(243, 243, 243);}</string>
    <widget class="QtMaterialRaisedButton" name="startCompression">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>40</x>
       <y>650</y>
       <width>381</width>
       <height>120</height>
@@ -65,187 +41,126 @@ background-color: rgb(243, 243, 243);}</string>
     <property name="font">
      <font>
       <family>Consolas</family>
-      <pointsize>24</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QtMaterialRaisedButton" name="uploadPic">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>500</y>
-      <width>381</width>
-      <height>120</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Consolas</family>
-      <pointsize>24</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QtMaterialRaisedButton" name="function1">
-    <property name="geometry">
-     <rect>
-      <x>489</x>
-      <y>500</y>
-      <width>381</width>
-      <height>120</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QtMaterialRaisedButton" name="function3">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>650</y>
-      <width>381</width>
-      <height>120</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
+     <string>开始压缩</string>
     </property>
    </widget>
    <widget class="QtMaterialRaisedButton" name="function4">
     <property name="geometry">
      <rect>
-      <x>899</x>
+      <x>450</x>
       <y>650</y>
-      <width>301</width>
-      <height>120</height>
+      <width>181</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>保存图像</string>
     </property>
    </widget>
    <widget class="QGraphicsView" name="graphicsView_2">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>450</x>
       <y>50</y>
       <width>381</width>
-      <height>381</height>
+      <height>421</height>
      </rect>
     </property>
    </widget>
    <widget class="QtMaterialRaisedButton" name="selectPicture">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>50</y>
+      <x>40</x>
+      <y>500</y>
       <width>381</width>
-      <height>381</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Consolas</family>
-      <pointsize>15</pointsize>
+      <pointsize>10</pointsize>
       <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>Select an image...</string>
+     <string>选择图片</string>
     </property>
    </widget>
    <widget class="QtMaterialRadioButton" name="radioButton">
     <property name="geometry">
      <rect>
-      <x>900</x>
+      <x>460</x>
       <y>550</y>
-      <width>134</width>
+      <width>101</width>
       <height>27</height>
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>IBR</string>
     </property>
    </widget>
    <widget class="QtMaterialRadioButton" name="radioButton_2">
     <property name="geometry">
      <rect>
-      <x>900</x>
+      <x>460</x>
       <y>500</y>
-      <width>134</width>
+      <width>101</width>
       <height>27</height>
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>DP</string>
     </property>
    </widget>
    <widget class="QtMaterialRadioButton" name="radioButton_3">
     <property name="geometry">
      <rect>
-      <x>1050</x>
+      <x>580</x>
       <y>500</y>
-      <width>134</width>
+      <width>101</width>
       <height>27</height>
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>HP</string>
     </property>
    </widget>
    <widget class="QtMaterialRadioButton" name="radioButton_4">
     <property name="geometry">
      <rect>
-      <x>1050</x>
+      <x>580</x>
       <y>550</y>
-      <width>134</width>
+      <width>101</width>
       <height>27</height>
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
+     <string>TRNAM</string>
     </property>
    </widget>
    <widget class="QtMaterialRadioButton" name="radioButton_5">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>600</y>
-      <width>134</width>
+      <x>700</x>
+      <y>500</y>
+      <width>101</width>
       <height>27</height>
      </rect>
     </property>
     <property name="text">
-     <string>RadioButton</string>
-    </property>
-   </widget>
-   <widget class="QtMaterialRadioButton" name="radioButton_6">
-    <property name="geometry">
-     <rect>
-      <x>1050</x>
-      <y>600</y>
-      <width>134</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>RadioButton</string>
+     <string>STC</string>
     </property>
    </widget>
    <widget class="QtMaterialSlider" name="horizontalSlider">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>350</y>
+      <x>470</x>
+      <y>600</y>
       <width>301</width>
       <height>16</height>
      </rect>
@@ -257,10 +172,10 @@ background-color: rgb(243, 243, 243);}</string>
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>900</x>
+      <x>860</x>
       <y>50</y>
-      <width>301</width>
-      <height>281</height>
+      <width>381</width>
+      <height>711</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -271,17 +186,17 @@ background-color: rgb(243, 243, 243);}</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>299</width>
-       <height>279</height>
+       <width>379</width>
+       <height>709</height>
       </rect>
      </property>
      <widget class="QtMaterialScrollBar" name="verticalScrollBar">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>350</x>
         <y>0</y>
         <width>21</width>
-        <height>281</height>
+        <height>711</height>
        </rect>
       </property>
       <property name="orientation">
@@ -290,21 +205,70 @@ background-color: rgb(243, 243, 243);}</string>
      </widget>
     </widget>
    </widget>
-   <widget class="QPlainTextEdit" name="textOutput">
+   <widget class="QGraphicsView" name="graphicsView_3">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>380</y>
-      <width>301</width>
-      <height>81</height>
+      <x>40</x>
+      <y>50</y>
+      <width>381</width>
+      <height>421</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QtMaterialRaisedButton" name="function4_2">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>650</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>清空日志</string>
+    </property>
+   </widget>
+   <widget class="QtMaterialRaisedButton" name="function4_5">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>710</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>帮助</string>
+    </property>
+   </widget>
+   <widget class="QtMaterialRaisedButton" name="function4_6">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>710</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关于</string>
+    </property>
+   </widget>
+   <widget class="QtMaterialRadioButton" name="radioButton_11">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>550</y>
+      <width>101</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>other</string>
     </property>
    </widget>
    <zorder>scrollArea</zorder>
    <zorder>startCompression</zorder>
-   <zorder>uploadPic</zorder>
-   <zorder>function1</zorder>
-   <zorder>function3</zorder>
    <zorder>function4</zorder>
    <zorder>graphicsView_2</zorder>
    <zorder>selectPicture</zorder>
@@ -313,9 +277,12 @@ background-color: rgb(243, 243, 243);}</string>
    <zorder>radioButton_3</zorder>
    <zorder>radioButton_4</zorder>
    <zorder>radioButton_5</zorder>
-   <zorder>radioButton_6</zorder>
    <zorder>horizontalSlider</zorder>
-   <zorder>textOutput</zorder>
+   <zorder>graphicsView_3</zorder>
+   <zorder>function4_2</zorder>
+   <zorder>function4_5</zorder>
+   <zorder>function4_6</zorder>
+   <zorder>radioButton_11</zorder>
   </widget>
  </widget>
  <customwidgets>

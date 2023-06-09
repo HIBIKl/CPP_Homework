@@ -1,4 +1,4 @@
-#include "BigHeader.h"
+#include "./hzc/upload/BigHeader.h"
 double BPP (map<unsigned int,ColorNode> &color_list ,int xn , int yn , vector<char> &Q )
 { 
 	int a1=0,a2=0,a3=0;
@@ -263,74 +263,74 @@ void Decode(CvMat *R,int height,int width,const vector<char> &Q)
 
 
 
-//bool IsSameBlock(const IplImage *img,int x1,int y1,int x2,int y2,int margin)
-//{
-//	uchar *gy1 = (uchar*)img->imageData + y1*img->widthStep;
-//	uchar *g1 = gy1 + x1;
-//	uchar *g2 = gy1 + x2;
-//	uchar *gy2 = (uchar*)img->imageData + y2*img->widthStep;
-//	uchar *g3 = gy2 + x1;
-//	uchar *g4 = gy2 + x2;
-//	bool returnValue = true;
-//
-//	if(x1 == x2  && y1 == y2)
-//	{
-//		returnValue = true;
-//	}
-//	else if(y1 == y2)
-//	{
-//		for(int x = x1+1;x<x2;x++)
-//		{
-//			double i2 = (double)(x - x1) / (double)(x2 - x1);
-//			double g = *g1 + (*g4 - *g1)*i2;
-//			uchar *gValue = gy1 + x;
-//			if(abs(*gValue - g) > margin)
-//			{
-//				returnValue = false;
-//				break;
-//			}
-//
-//		}
-//	}
-//	else if(x1 == x2)
-//	{
-//		for(int y=y1+1;y<y2;y++)
-//		{
-//			double i1 = (double)(y-y1) / (double)(y2 - y1);
-//			double g = *g1 + (*g4 - *g1)*i1;
-//			uchar *gy = (uchar*)img->imageData + y*img->widthStep;
-//			uchar *gValue = gy + x1;
-//			if(abs(*gValue - g) >margin)
-//			{
-//				returnValue = false;
-//				break;
-//			}
-//		}
-//	}
-//	else
-//	{
-//		for(int x = x1; x<=x2;x++)
-//		{
-//			for(int y = y1;y<=y2;y++)
-//			{
-//				double i1 = (double)(y - y1)/(double)(y2 - y1);
-//				double i2 = (double)(x - x1)/(double)(x2 - x1);
-//				double g5 = *g1 + (*g2 - *g1)*i2;
-//				double g6 = *g3 + (*g4 - *g3)*i2;
-//				double g = g5 + (g6 - g5) *i1;
-//				uchar *gy = (uchar*)img->imageData + y*img->widthStep;
-//			    uchar *gValue = gy + x;
-//				if(abs(*gValue - g) >margin)
-//				{
-//					returnValue = false;
-//					break;
-//				}
-//			}
-//		}
-//	}
-//
-//	return returnValue;
-//}
+bool IsSameBlock(const IplImage *img,int x1,int y1,int x2,int y2,int margin)
+{
+    uchar *gy1 = (uchar*)img->imageData + y1*img->widthStep;
+    uchar *g1 = gy1 + x1;
+    uchar *g2 = gy1 + x2;
+    uchar *gy2 = (uchar*)img->imageData + y2*img->widthStep;
+    uchar *g3 = gy2 + x1;
+    uchar *g4 = gy2 + x2;
+    bool returnValue = true;
+
+    if(x1 == x2  && y1 == y2)
+    {
+        returnValue = true;
+    }
+    else if(y1 == y2)
+    {
+        for(int x = x1+1;x<x2;x++)
+        {
+            double i2 = (double)(x - x1) / (double)(x2 - x1);
+            double g = *g1 + (*g4 - *g1)*i2;
+            uchar *gValue = gy1 + x;
+            if(abs(*gValue - g) > margin)
+            {
+                returnValue = false;
+                break;
+            }
+
+        }
+    }
+    else if(x1 == x2)
+    {
+        for(int y=y1+1;y<y2;y++)
+        {
+            double i1 = (double)(y-y1) / (double)(y2 - y1);
+            double g = *g1 + (*g4 - *g1)*i1;
+            uchar *gy = (uchar*)img->imageData + y*img->widthStep;
+            uchar *gValue = gy + x1;
+            if(abs(*gValue - g) >margin)
+            {
+                returnValue = false;
+                break;
+            }
+        }
+    }
+    else
+    {
+        for(int x = x1; x<=x2;x++)
+        {
+            for(int y = y1;y<=y2;y++)
+            {
+                double i1 = (double)(y - y1)/(double)(y2 - y1);
+                double i2 = (double)(x - x1)/(double)(x2 - x1);
+                double g5 = *g1 + (*g2 - *g1)*i2;
+                double g6 = *g3 + (*g4 - *g3)*i2;
+                double g = g5 + (g6 - g5) *i1;
+                uchar *gy = (uchar*)img->imageData + y*img->widthStep;
+                uchar *gValue = gy + x;
+                if(abs(*gValue - g) >margin)
+                {
+                    returnValue = false;
+                    break;
+                }
+            }
+        }
+    }
+
+    return returnValue;
+}
 
 Location FindSameBlock(const IplImage *img,CvMat *markMatrix,CvMat *R,int x1,int y1,double margin,double ratio)
 {

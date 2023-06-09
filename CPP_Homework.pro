@@ -14,14 +14,13 @@ SOURCES += \
     widget.cpp \
     ./hzc/upload/Diagonal_Priority.cpp \
     ./hzc/upload/Horizonal_Priority.cpp \
-    ./hzc/upload/IBR.cpp \
-    ./hzc/upload/picture.cpp
+    ./hzc/upload/IBR.cpp
+
 
 
 HEADERS += \
     widget.h \
-    ./hzc/upload/BigHeader.h \
-    ./hzc/upload/picture.h
+    ./hzc/upload/BigHeader.h
 
 FORMS += \
     widget.ui

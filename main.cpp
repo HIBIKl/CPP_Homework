@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     splashFont.setBold(true);
     startScreen->setFont(splashFont);
     startScreen->showMessage(QString("Loading..."),bottomLeft,Qt::white);
-    QThread::sleep(2);
+    QThread::sleep(1);
     delete startScreen;
     //---------------结束开始界面--------------------//
 
