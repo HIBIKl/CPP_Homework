@@ -9,7 +9,7 @@
 //#include "./hzc/upload/BigHeader.h"
 
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(resources);
@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
     QThread::sleep(1);
     delete startScreen;
     //---------------结束开始界面--------------------//
-
 
     Widget w;
     //w.setWindowFlag(Qt::FramelessWindowHint);
