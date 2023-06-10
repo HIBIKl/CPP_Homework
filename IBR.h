@@ -34,6 +34,8 @@ struct ColorNode
 	ColorNode(){};
 };
 
+int ibr_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4);
+
 void StartNamCut(const IplImage *img,CvMat *markMatrix,CvMat *R,map<unsigned int,ColorNode> &color_list,map<unsigned int,Location> &block_list,int height,int width,double margin,int &num);
 Location FindSameBlock(const IplImage *img,CvMat *markMatrix,CvMat *R,int x1,int y1,double margin,double ratio);
 bool IsSameBlock(const IplImage *img,int x1,int y1,int x2,int y2,int margin);

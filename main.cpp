@@ -1,10 +1,10 @@
-//ç»„ä»¶åº“å¤´æ–‡ä»¶
+//×é¼ş¿âÍ·ÎÄ¼ş
 #include "widget.h"
 #include <QApplication>
 #include <QSplashScreen>
 #include <QThread>
 #include <QtWidgets/QApplication>
-//ç®—æ³•å¤´æ–‡ä»¶
+//Ëã·¨Í·ÎÄ¼ş
 //#include "./hzc/upload/picture.h"
 //#include "./hzc/upload/BigHeader.h"
 
@@ -13,9 +13,9 @@ int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(resources);
-    //---------------å¼€å§‹ç•Œé¢-----------------------//
+    //---------------¿ªÊ¼½çÃæ-----------------------//
     QSplashScreen *startScreen = new QSplashScreen();
-    startScreen->setPixmap(QPixmap("D:/Pictures/Screenshots/bar.png"));//å¼€å§‹ç•Œé¢å›¾ç‰‡ï¼Œå¾—psä¸€ä¸ª
+    startScreen->setPixmap(QPixmap("D:/Pictures/Screenshots/bar.png"));//¿ªÊ¼½çÃæÍ¼Æ¬£¬µÃpsÒ»¸ö
     startScreen->show();
     Qt::Alignment bottomLeft = Qt::AlignRight | Qt::AlignBottom;
     QFont splashFont;
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     startScreen->showMessage(QString("Loading..."),bottomLeft,Qt::white);
     QThread::sleep(1);
     delete startScreen;
-    //---------------ç»“æŸå¼€å§‹ç•Œé¢--------------------//
+    //---------------½áÊø¿ªÊ¼½çÃæ--------------------//
 
     Widget w;
     //w.setWindowFlag(Qt::FramelessWindowHint);

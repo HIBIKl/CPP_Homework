@@ -1,86 +1,97 @@
 #include "Diag_and_Hori.h"
 #include "IBR.h"
 #include "STC.h"
+
 //测试数据： .\Total.exe .\lena512.bmp 1.bmp 2.bmp
 
 //Diagonal参数：分别输入1.原灰度图 2.转灰度图文件名 3.解码后的文件名 4.EPSILON
-int diag_main(int argc, char** argv)
+int diag_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4)
 {
-	//argc个数从5改到6
-	if (argc == 5) {
-		Mat img = imread(argv[1]);
-		if (!img.empty()) {
-			namedWindow("原图灰度图像", 1);
-			imshow("原图灰度图像", img);
-			/*一，分割同类块及编码*/
-			int M = img.rows;
-			int N = img.cols;
+    if (argv1 != NULL) {
+        Mat img = imread(argv1);
+        if (!img.empty()) {
+            namedWindow("原图灰度图像", 1);
+            imshow("原图灰度图像", img);
+            /*一，分割同类块及编码*/
+            int M = img.rows;
+            int N = img.cols;
 
-			Mat img_gray = img;
-			cvtColor(img, img_gray, CV_BGR2GRAY);
-			Mat markMatrix = Mat::zeros(M, N, CV_8UC1);
-			Mat R = Mat::zeros(M, N, CV_8UC1);
+            Mat img_gray = img;
+            cvtColor(img, img_gray, CV_BGR2GRAY);
+            Mat markMatrix = Mat::zeros(M, N, CV_8UC1);
+            Mat R = Mat::zeros(M, N, CV_8UC1);
 
-			vector<Color> colorList;
-			vector<char> coordinateList;
-			int xigema = atoi(argv[4]);
-			MyTimer mt;
-			mt.Start();
-			/*分块*/
-			RNAMCEncoding_Diagonal(img_gray, R, markMatrix, M, N, colorList, coordinateList, xigema);
+            vector<algorithmColor> colorList;
+            vector<char> coordinateList;
+            int xigema = atoi(argv4);
 
-			/*矩阵编码*/
-			EnCode(R, M, N, coordinateList);
-			mt.End();
+            //MyTimer mt;
+            //mt.Start();
 
-			cout << "编码压缩花费:" << mt.costTime << "ms" << endl;
-			mt.Reset();
+            time_t begin1,end1,begin2,end2;
+            begin1 = clock();
 
-			/*二，还原图像矩阵及图像*/
-			Mat T = Mat::zeros(M, N, CV_8UC1);
+            /*分块*/
+            RNAMCEncoding_Diagonal(img_gray, R, markMatrix, M, N, colorList, coordinateList, xigema);
 
-			mt.Start();
-			Decode(T, M, N, coordinateList);
-			RNAMCDecoding(T, M, N, colorList, coordinateList);
-			mt.End();
-			cout << "还原图像耗时:" << mt.costTime << "ms" << endl;
-			mt.Reset();
+            /*矩阵编码*/
+            EnCode(R, M, N, coordinateList);
+            //mt.End();
+            end1 = clock();
 
-			cout << "块数:" << colorList.size() << endl;
-			cout << "PSNR值:" << PSNR(img_gray, T, M, N) << endl;
-			double BPPValue = BPP(colorList, M, N, coordinateList);
-			cout << "BPP值:" << BPPValue << endl;
-			cout << "CR值:" << 8.0 / BPPValue << endl;
+            //cout << "编码压缩花费:" << mt.costTime << "ms" << endl;
+            //mt.Reset();
 
-			namedWindow("压缩图灰度图像", 1);
-			imshow("压缩图灰度图像", T);
-			imwrite(argv[2], img_gray);//多出来的两行,输出文件
-			imwrite(argv[3], T);//多出来的两行
+            cout << "编码压缩花费:" << end1 - begin1 << "ms" << endl;
 
-			/*分割图*/
-			Mat display(M, N, CV_8UC1, Scalar::all(255));
-			segmentDisplay(display, colorList);
-			namedWindow("分割图", 1);
-			imshow("分割图", display);
+            /*二，还原图像矩阵及图像*/
+            Mat T = Mat::zeros(M, N, CV_8UC1);
 
-			waitKey(0);
-			destroyAllWindows();
-			img.release();
-			img_gray.release();
-			display.release();
-			T.release();
-		}
-	}
+            //mt.Start();
+            begin2 = clock();
+            Decode(T, M, N, coordinateList);
+            RNAMCDecoding(T, M, N, colorList, coordinateList);
+            //mt.End();
+            end2 = clock();
+            //cout << "还原图像耗时:" << mt.costTime << "ms" << endl;
+            //mt.Reset();
+            cout << "还原图像耗时:" << end2 - begin2 << "ms" << endl;
 
-	return 0;
+            cout << "块数:" << colorList.size() << endl;
+            cout << "PSNR值:" << PSNR(img_gray, T, M, N) << endl;
+            double BPPValue = BPP(colorList, M, N, coordinateList);
+            cout << "BPP值:" << BPPValue << endl;
+            cout << "CR值:" << 8.0 / BPPValue << endl;
+
+            namedWindow("压缩图灰度图像", 1);
+            imshow("压缩图灰度图像", T);
+
+            imwrite(argv2, img_gray);//多出来的两行,输出文件
+            imwrite(argv3, T);//多出来的两行
+
+            /*分割图*/
+            Mat display(M, N, CV_8UC1, Scalar::all(255));
+            segmentDisplay(display, colorList);
+            namedWindow("分割图", 1);
+            imshow("分割图", display);
+
+            waitKey(2000);
+            destroyAllWindows();
+            img.release();
+            img_gray.release();
+            display.release();
+            T.release();
+        }
+    }
+
+    return 0;
 }
 
 //Horizonal参数：分别输入1.原灰度图 2.转灰度图文件名 3.解码后的文件名 4.EPSILON
-int hori_main(int argc, char** argv)
+int hori_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4)
 {
-	//argc个数从5改到6
-	if (argc == 6) {
-		Mat img = imread(argv[1]);
+    if (argv1 != NULL) {
+        Mat img = imread(argv1);
 		if (!img.empty()) {
 			namedWindow("原图灰度图像", 1);
 			imshow("原图灰度图像", img);
@@ -93,30 +104,42 @@ int hori_main(int argc, char** argv)
 			Mat markMatrix = Mat::zeros(M, N, CV_8UC1);
 			Mat R = Mat::zeros(M, N, CV_8UC1);
 
-			vector<Color> colorList;
+            vector<algorithmColor> colorList;
 			vector<char> coordinateList;
-			int xigema = atoi(argv[4]);
-			MyTimer mt;
-			mt.Start();
+            int xigema = atoi(argv4);
+
+            //删掉Windows.h，解决ACCESS_MASK冲突
+            //MyTimer mt;
+            //mt.Start();
+
+            //更改计时函数以解决冲突
+            time_t begin1,end1,begin2,end2;
+            begin1 = clock();
+
 			/*分块*/
 			RNAMCEncoding_Horizonal(img_gray, R, markMatrix, M, N, colorList, coordinateList, xigema);
 
 			/*矩阵编码*/
 			EnCode(R, M, N, coordinateList);
-			mt.End();
+            //mt.End();
+            end1 = clock();
 
-			cout << "编码压缩花费:" << mt.costTime << "ms" << endl;
-			mt.Reset();
+            //cout << "编码压缩花费:" << mt.costTime << "ms" << endl;
+            cout << "编码压缩花费:" << end1 - begin1 << "ms" << endl;
+            //mt.Reset();
 
 			/*二，还原图像矩阵及图像*/
 			Mat T = Mat::zeros(M, N, CV_8UC1);
 
-			mt.Start();
+            //mt.Start();
+            begin2 = clock();
 			Decode(T, M, N, coordinateList);
 			RNAMCDecoding(T, M, N, colorList, coordinateList);
-			mt.End();
-			cout << "还原图像耗时:" << mt.costTime << "ms" << endl;
-			mt.Reset();
+            end2 = clock();
+            //mt.End();
+            //cout << "还原图像耗时:" << mt.costTime << "ms" << endl;
+            cout << "还原图像耗时:" << end2 - begin2 << "ms" << endl;
+            //mt.Reset();
 
 			cout << "块数:" << colorList.size() << endl;
 			cout << "PSNR值:" << PSNR(img_gray, T, M, N) << endl;
@@ -126,8 +149,8 @@ int hori_main(int argc, char** argv)
 
 			namedWindow("压缩图灰度图像", 1);
 			imshow("压缩图灰度图像", T);
-			imwrite(argv[2], img_gray);//多出来的两行
-			imwrite(argv[3], T);//多出来的两行
+            imwrite(argv2, img_gray);//多出来的两行
+            imwrite(argv3, T);//多出来的两行
 
 			/*分割图*/
 			Mat display(M, N, CV_8UC1, Scalar::all(255));
@@ -135,7 +158,7 @@ int hori_main(int argc, char** argv)
 			namedWindow("分割图", 1);
 			imshow("分割图", display);
 
-			waitKey(0);
+            waitKey(2000);
 			destroyAllWindows();
 			img.release();
 			img_gray.release();
@@ -148,11 +171,11 @@ int hori_main(int argc, char** argv)
 }
 
 //IBR参数：分别输入1.原灰度图 2.转灰度图文件名 3.解码后的文件名 4.EPSILON
-int ibr_main(int argc, char** argv)
+int ibr_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4)
 {
 	IplImage* img = NULL;
-	//参数改为7
-	if (argc == 7 && (img = cvLoadImage(argv[1], 0)) != 0)
+
+    if ((img = cvLoadImage(argv1, 0)) != 0)
 	{
 
 		cvNamedWindow("原图灰度图像", 1);
@@ -169,7 +192,7 @@ int ibr_main(int argc, char** argv)
 		int num = 0;
 		map<unsigned int, ColorNode> color_list;
 		map<unsigned int, Location> block_list;
-		double margin = atof(argv[4]);
+        double margin = atof(argv4);
 		time_t begin, end;
 		begin = clock();
 		/*分块*/
@@ -237,8 +260,8 @@ int ibr_main(int argc, char** argv)
 
 		cvNamedWindow("压缩图灰度图像", 1);
 		cvShowImage("压缩图灰度图像", newImg);
-		cvSaveImage(argv[2], img, 0);
-		cvSaveImage(argv[3], newImg, 0);
+        cvSaveImage(argv2, img, 0);
+        cvSaveImage(argv3, newImg, 0);
 
 		//画分割图
 		IplImage* sketch;
@@ -286,12 +309,12 @@ int ibr_main(int argc, char** argv)
 }
 
 //STC参数：分别输入1.程序地址2.原彩图3.转换灰度图文件名4.转换RNAMC文件名5.同类快阀值6.均值阀值7.方差阀值8.切法 1 水平 0垂直
-int stc_main(int argc, char** argv)
+int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4,const char* argv5,const char* argv6,const char* argv7)
 {
-	int nmb = 0;
+    int nmb = 0;
 	IplImage* img1;
 	//cout << "start" << endl;
-	if (argc == 8 && (img1 = cvLoadImage(argv[1], 0)) != 0)   //将源彩色图像img转化成目标灰色图像读入
+    if ((img1 = cvLoadImage(argv1, 0)) != 0)   //将源彩色图像img转化成目标灰色图像读入
 		//	if(( img1 = cvLoadImage("cameraman.tif", 0)) != 0)
 	{
 		//	 cout << "img readed" << endl;
@@ -333,10 +356,10 @@ int stc_main(int argc, char** argv)
 		IplImage* imggest = cvCreateImage(cvGetSize(img1), img1->depth, img1->nChannels); //创建同类型图像gest
 		cvSetZero(imggest);
 
-		int num = atoi(argv[7]);
+        int num = atoi(argv7);
 		int M = img1->height;  //行(after)
 		int N = img1->width;   //列(before)
-		double epsilon = atof(argv[4]);
+        double epsilon = atof(argv4);
 
 
 		vector<doubleCoordinate> C;//建立坐标表
@@ -344,8 +367,8 @@ int stc_main(int argc, char** argv)
 		vector<char> Q;//建立线性树表
 		treeNode* root = new treeNode; //建立根结点
 		InitialNode(root);
-		thresU = atof(argv[5]);
-		thresVar = atof(argv[6]);
+        thresU = atof(argv5);
+        thresVar = atof(argv6);
 		//创建素描图像
 		IplImage* sketch = cvCreateImage(cvGetSize(img1), IPL_DEPTH_8U, 1);
 		/* for(int y = 0;y<M;y++)
@@ -425,7 +448,7 @@ int stc_main(int argc, char** argv)
 		Segment* UpperRight = NULL;
 		Segment* PreLowerLeft = NULL;
 
-		num = atoi(argv[7]);
+        num = atoi(argv7);
 		Region_Segm(UpperLeft, UpperRight, PreLowerLeft, 0, 0, M, N, all_region, P, C, Q, num);
 
 
@@ -505,8 +528,8 @@ int stc_main(int argc, char** argv)
 		cvNamedWindow("QSC区域分割后的图像", CV_WINDOW_AUTOSIZE);     //区域分割后的图像
 		cvShowImage("QSC区域分割后的图像", imggest);//载入转化后的灰度图像   //区域分割后的图像
 
-		cvSaveImage(argv[2], img1, 0);//把图像写入文件
-		cvSaveImage(argv[3], imggest, 0);//把图像写入文件
+        cvSaveImage(argv2, img1, 0);//把图像写入文件
+        cvSaveImage(argv3, imggest, 0);//把图像写入文件
 		//画示意图
 		cvNamedWindow("分割示意图", CV_WINDOW_AUTOSIZE);
 		if (N >= 256 || M >= 256)
@@ -685,7 +708,7 @@ int stc_main(int argc, char** argv)
 }
 
 
-//main函数
+//main函数,没用了
 //int main(int argc,char** argv)
 //{
 //	if (argc == 5)

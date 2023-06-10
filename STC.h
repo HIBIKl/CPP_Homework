@@ -54,7 +54,7 @@ struct treeNode {
 	treeNode* nechild;
 };//定义树的结点结构
 
-
+int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4,const char* argv5,const char* argv6,const char* argv7);
 
 bool JudgeSameBlock ( double epsilon , IplImage *&img1 , int x1 , int y1 ,int x2 , int y2 );//判断矩形是否为同类块
 
