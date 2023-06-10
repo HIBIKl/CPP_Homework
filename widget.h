@@ -40,6 +40,26 @@ public:
 
 private slots:
     void on_selectPicture_clicked();
+    void on_startCompression_clicked();
+
+    void on_algorithm_tnam_diagonal_clicked();
+
+
+    void on_algorithm_tnam_horizonal_clicked();
+
+    void on_algorithm_stc_clicked();
+
+    void on_algorithm_ibr_clicked();
+
+
+    void on_epsilon_slider_valueChanged(int value);
+
+    void on_fast_threshold_slider_valueChanged(int value);
+
+    void on_mean_value_slider_valueChanged(int value);
+
+    void on_variance_slider_valueChanged(int value);
+
 public slots:
     /*Mat importPic();*/
     //void startAdjustH(char**);//用于压缩Horizonal
@@ -52,7 +72,7 @@ signals:
     
     //按钮定义完后可使用
     //connect(this->btn1, SIGNAL(QPushButton::clicked), this, SLOT(startAdjustH(char** argv)));
-    
+
 private:
     Ui::Widget *ui;
 };

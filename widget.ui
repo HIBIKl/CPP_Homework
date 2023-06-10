@@ -10,6 +10,18 @@
     <height>800</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>800</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Widget</string>
   </property>
@@ -20,70 +32,82 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
+     <y>-10</y>
      <width>1280</width>
      <height>800</height>
     </rect>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>1280</width>
+     <height>800</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1280</width>
+     <height>800</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">#mainDisplayWidget{
-background-color: rgb(243, 243, 243);}</string>
+    <string notr="true">background-color: rgb(235, 235, 235);</string>
    </property>
    <widget class="QtMaterialRaisedButton" name="startCompression">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>650</y>
+      <y>639</y>
       <width>381</width>
-      <height>120</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Consolas</family>
-      <pointsize>10</pointsize>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
      <string>开始压缩</string>
     </property>
    </widget>
-   <widget class="QtMaterialRaisedButton" name="function4">
+   <widget class="QtMaterialRaisedButton" name="saveImage">
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>650</y>
+      <y>720</y>
       <width>181</width>
       <height>51</height>
      </rect>
     </property>
-    <property name="text">
-     <string>保存图像</string>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
-   </widget>
-   <widget class="QGraphicsView" name="graphicsView_2">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>50</y>
-      <width>381</width>
-      <height>421</height>
-     </rect>
+    <property name="text">
+     <string>另存为...</string>
     </property>
    </widget>
    <widget class="QtMaterialRaisedButton" name="selectPicture">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>500</y>
+      <y>470</y>
       <width>381</width>
-      <height>111</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Consolas</family>
-      <pointsize>10</pointsize>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -91,82 +115,171 @@ background-color: rgb(243, 243, 243);}</string>
      <string>选择图片</string>
     </property>
    </widget>
-   <widget class="QtMaterialRadioButton" name="radioButton">
+   <widget class="QtMaterialRadioButton" name="algorithm_ibr">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>550</y>
-      <width>101</width>
+      <x>610</x>
+      <y>470</y>
+      <width>131</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>IBR</string>
     </property>
    </widget>
-   <widget class="QtMaterialRadioButton" name="radioButton_2">
+   <widget class="QtMaterialRadioButton" name="algorithm_tnam_diagonal">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>500</y>
-      <width>101</width>
+      <x>450</x>
+      <y>470</y>
+      <width>161</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
     </property>
     <property name="text">
-     <string>DP</string>
+     <string>TNAM垂直</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
     </property>
    </widget>
-   <widget class="QtMaterialRadioButton" name="radioButton_3">
+   <widget class="QtMaterialRadioButton" name="algorithm_tnam_horizonal">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>500</y>
-      <width>101</width>
+      <x>450</x>
+      <y>520</y>
+      <width>161</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
-     <string>HP</string>
+     <string>TNAM水平</string>
     </property>
    </widget>
-   <widget class="QtMaterialRadioButton" name="radioButton_4">
+   <widget class="QtMaterialRadioButton" name="algorithm_trnam">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>550</y>
-      <width>101</width>
+      <x>610</x>
+      <y>520</y>
+      <width>131</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>TRNAM</string>
     </property>
    </widget>
-   <widget class="QtMaterialRadioButton" name="radioButton_5">
+   <widget class="QtMaterialRadioButton" name="algorithm_stc">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>500</y>
-      <width>101</width>
+      <x>730</x>
+      <y>470</y>
+      <width>81</width>
       <height>27</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+      <bold>false</bold>
+     </font>
     </property>
     <property name="text">
      <string>STC</string>
     </property>
    </widget>
-   <widget class="QtMaterialSlider" name="horizontalSlider">
+   <widget class="QtMaterialSlider" name="variance_slider">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>600</y>
-      <width>301</width>
-      <height>16</height>
+      <x>550</x>
+      <y>660</y>
+      <width>231</width>
+      <height>20</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>50</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>10</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QtMaterialRaisedButton" name="clearLog">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>720</y>
+      <width>391</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>清空日志</string>
+    </property>
+   </widget>
+   <widget class="QtMaterialRaisedButton" name="helpCenter">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>720</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>帮助/关于</string>
     </property>
    </widget>
    <widget class="QScrollArea" name="scrollArea">
@@ -174,8 +287,8 @@ background-color: rgb(243, 243, 243);}</string>
      <rect>
       <x>860</x>
       <y>50</y>
-      <width>381</width>
-      <height>711</height>
+      <width>391</width>
+      <height>651</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -186,115 +299,371 @@ background-color: rgb(243, 243, 243);}</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>379</width>
-       <height>709</height>
+       <width>389</width>
+       <height>649</height>
       </rect>
      </property>
-     <widget class="QtMaterialScrollBar" name="verticalScrollBar">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>0</y>
-        <width>21</width>
-        <height>711</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
      <widget class="QTextBrowser" name="textBrowser">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>381</width>
-        <height>761</height>
+        <width>391</width>
+        <height>651</height>
        </rect>
       </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Consolas</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="lineWrapMode">
+       <enum>QTextEdit::WidgetWidth</enum>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
      </widget>
-     <zorder>textBrowser</zorder>
-     <zorder>verticalScrollBar</zorder>
     </widget>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView_3">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>40</x>
+      <y>52</y>
+      <width>381</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Original Image is here...</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
       <y>50</y>
       <width>381</width>
-      <height>421</height>
+      <height>381</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QtMaterialRaisedButton" name="function4_2">
-    <property name="geometry">
-     <rect>
-      <x>650</x>
-      <y>650</y>
-      <width>181</width>
-      <height>51</height>
-     </rect>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>清空日志</string>
+     <string>Output Image is here...</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QtMaterialRaisedButton" name="function4_5">
+   <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>710</y>
-      <width>181</width>
-      <height>51</height>
+      <x>460</x>
+      <y>660</y>
+      <width>111</width>
+      <height>23</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Microsoft YaHei</family>
+      <pointsize>10</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
     <property name="text">
-     <string>帮助</string>
+     <string>方差阀值</string>
     </property>
    </widget>
-   <widget class="QtMaterialRaisedButton" name="function4_6">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>710</y>
-      <width>181</width>
-      <height>51</height>
+      <x>460</x>
+      <y>630</y>
+      <width>111</width>
+      <height>23</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Microsoft YaHei</family>
+      <pointsize>10</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
     <property name="text">
-     <string>关于</string>
+     <string>均值阀值</string>
     </property>
    </widget>
-   <widget class="QtMaterialRadioButton" name="radioButton_11">
+   <widget class="QtMaterialSlider" name="mean_value_slider">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>550</y>
-      <width>101</width>
-      <height>27</height>
+      <x>550</x>
+      <y>630</y>
+      <width>231</width>
+      <height>20</height>
      </rect>
     </property>
-    <property name="text">
-     <string>other</string>
+    <property name="maximum">
+     <number>50</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>10</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <zorder>scrollArea</zorder>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>600</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Microsoft YaHei</family>
+      <pointsize>10</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="text">
+     <string>同类块阀值</string>
+    </property>
+   </widget>
+   <widget class="QtMaterialSlider" name="fast_threshold_slider">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>600</y>
+      <width>231</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>50</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>10</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>570</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Microsoft YaHei</family>
+      <pointsize>10</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="text">
+     <string>EPSILON</string>
+    </property>
+   </widget>
+   <widget class="QtMaterialSlider" name="epsilon_slider">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>570</y>
+      <width>231</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>50</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>10</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QtMaterialTextField" name="epsilon_label">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>570</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>11</pointsize>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>10</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QtMaterialTextField" name="fast_threshold_label">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>600</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>11</pointsize>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>10</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QtMaterialTextField" name="mean_value_label">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>630</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>11</pointsize>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>10</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QtMaterialTextField" name="variance_label">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>660</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Consolas</family>
+      <pointsize>11</pointsize>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>10</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
    <zorder>startCompression</zorder>
-   <zorder>function4</zorder>
-   <zorder>graphicsView_2</zorder>
+   <zorder>saveImage</zorder>
    <zorder>selectPicture</zorder>
-   <zorder>radioButton</zorder>
-   <zorder>radioButton_2</zorder>
-   <zorder>radioButton_3</zorder>
-   <zorder>radioButton_4</zorder>
-   <zorder>radioButton_5</zorder>
-   <zorder>horizontalSlider</zorder>
-   <zorder>graphicsView_3</zorder>
-   <zorder>function4_2</zorder>
-   <zorder>function4_5</zorder>
-   <zorder>function4_6</zorder>
-   <zorder>radioButton_11</zorder>
+   <zorder>algorithm_ibr</zorder>
+   <zorder>algorithm_tnam_diagonal</zorder>
+   <zorder>algorithm_tnam_horizonal</zorder>
+   <zorder>algorithm_trnam</zorder>
+   <zorder>algorithm_stc</zorder>
+   <zorder>variance_slider</zorder>
+   <zorder>clearLog</zorder>
+   <zorder>helpCenter</zorder>
+   <zorder>scrollArea</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>mean_value_slider</zorder>
+   <zorder>label_5</zorder>
+   <zorder>fast_threshold_slider</zorder>
+   <zorder>label_6</zorder>
+   <zorder>epsilon_slider</zorder>
+   <zorder>epsilon_label</zorder>
+   <zorder>fast_threshold_label</zorder>
+   <zorder>mean_value_label</zorder>
+   <zorder>variance_label</zorder>
   </widget>
  </widget>
  <customwidgets>
@@ -314,9 +683,9 @@ background-color: rgb(243, 243, 243);}</string>
    <header location="global">qtmaterialslider.h</header>
   </customwidget>
   <customwidget>
-   <class>QtMaterialScrollBar</class>
-   <extends>QScrollBar</extends>
-   <header location="global">qtmaterialscrollbar.h</header>
+   <class>QtMaterialTextField</class>
+   <extends>QLabel</extends>
+   <header location="global">qtmaterialtextfield.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -301,14 +301,14 @@ int ibr_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 		}
 		cvShowImage("分割示意图", sketch);
 
-		cvWaitKey();
+        cvWaitKey(2000);
 		cvDestroyAllWindows();
 	}
 
 	return 0;
 }
 
-//STC参数：分别输入1.程序地址2.原彩图3.转换灰度图文件名4.转换RNAMC文件名5.同类快阀值6.均值阀值7.方差阀值8.切法 1 水平 0垂直
+//STC参数：分别输入2.原彩图3.转换灰度图文件名4.转换RNAMC文件名 【5.同类快阀值 6.均值阀值 7.方差阀值 8.切法 1 水平 0垂直】
 int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4,const char* argv5,const char* argv6,const char* argv7)
 {
     int nmb = 0;
@@ -401,7 +401,7 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 		time = end - start;
 
 		ofstream fout("Results.txt");
-		cout << "解码所用时间:  " << time << "  ms" << endl << endl;
+        cout << "解码所用时间:  " << time << "  ms" << endl << endl;
 
 		cout << "epsilon =  " << epsilon << endl << endl;
 		fout << "epsilon =  " << epsilon << endl << endl;
@@ -707,17 +707,3 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 
 }
 
-
-//main函数,没用了
-//int main(int argc,char** argv)
-//{
-//	if (argc == 5)
-//		diag_main(argc, argv);
-//	if (argc == 6)
-//		hori_main(argc, argv);
-//	if (argc == 7)
-//		ibr_main(argc, argv);
-//	if (argc == 8)
-//		stc_main(argc, argv);
-//	return 114;
-//}

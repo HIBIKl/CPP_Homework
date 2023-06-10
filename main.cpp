@@ -28,6 +28,8 @@ int main(int argc, char **argv)
     delete startScreen;
     //---------------结束开始界面--------------------//
 
+
+
     Widget w;
     //w.setWindowFlag(Qt::FramelessWindowHint);
     //w.setAttribute(Qt::WA_TranslucentBackground);
