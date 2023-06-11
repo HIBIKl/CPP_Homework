@@ -1,10 +1,11 @@
-//×é¼ş¿âÍ·ÎÄ¼ş
+//ç»„ä»¶åº“å¤´æ–‡ä»¶
+#include "qdialog.h"
 #include "widget.h"
 #include <QApplication>
 #include <QSplashScreen>
 #include <QThread>
 #include <QtWidgets/QApplication>
-//Ëã·¨Í·ÎÄ¼ş
+//ç®—æ³•å¤´æ–‡ä»¶
 //#include "./hzc/upload/picture.h"
 //#include "./hzc/upload/BigHeader.h"
 
@@ -13,9 +14,9 @@ int main(int argc, char **argv)
 {
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(resources);
-    //---------------¿ªÊ¼½çÃæ-----------------------//
+    //---------------å¼€å§‹ç•Œé¢-----------------------//
     QSplashScreen *startScreen = new QSplashScreen();
-    startScreen->setPixmap(QPixmap("D:/Pictures/Screenshots/bar.png"));//¿ªÊ¼½çÃæÍ¼Æ¬£¬µÃpsÒ»¸ö
+    startScreen->setPixmap(QPixmap("D:/Pictures/Screenshots/bar.png"));//å¼€å§‹ç•Œé¢å›¾ç‰‡ï¼Œå¾—psä¸€ä¸ª
     startScreen->show();
     Qt::Alignment bottomLeft = Qt::AlignRight | Qt::AlignBottom;
     QFont splashFont;
@@ -26,14 +27,14 @@ int main(int argc, char **argv)
     startScreen->showMessage(QString("Loading..."),bottomLeft,Qt::white);
     QThread::sleep(1);
     delete startScreen;
-    //---------------½áÊø¿ªÊ¼½çÃæ--------------------//
+    //---------------ç»“æŸå¼€å§‹ç•Œé¢--------------------//
+
 
 
 
     Widget w;
-    //w.setWindowFlag(Qt::FramelessWindowHint);
-    //w.setAttribute(Qt::WA_TranslucentBackground);
-    //w.setFixedSize(1280,800);
+
+
     w.show();
     return a.exec();
 }

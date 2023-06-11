@@ -2,14 +2,14 @@
 
 using namespace cv;
 
-//Ê¹ÓÃ¸ÄÁ¼isSameBlockÒõÓ°·¨ÅĞ¶ÏÊÇ·ñÍ¬Àà¿é
+//ä½¿ç”¨æ”¹è‰¯isSameBlocké˜´å½±æ³•åˆ¤æ–­æ˜¯å¦åŒç±»å—
 bool isSameBlock(Mat f, Mat mark, Point lt, Point rb, int xgm)
 {
     uchar g1 = f.at<uchar>(lt);
     uchar g2 = f.at<uchar>(Point(rb.x, lt.y));
     uchar g3 = f.at<uchar>(Point(lt.x, rb.y));
     uchar g4 = f.at<uchar>(rb);
-    //±ê×¼¾ØĞÎ
+    //æ ‡å‡†çŸ©å½¢
     if (lt.x < rb.x && lt.y < rb.y)
     {
         int flag = 1;
@@ -33,7 +33,7 @@ bool isSameBlock(Mat f, Mat mark, Point lt, Point rb, int xgm)
         }
         return flag;
     }
-    //¿íÎª1µÄ¾ØĞÎ
+    //å®½ä¸º1çš„çŸ©å½¢
     else if (lt.x != rb.x && lt.y == rb.y)
     {
         int flag = 1;
@@ -49,7 +49,7 @@ bool isSameBlock(Mat f, Mat mark, Point lt, Point rb, int xgm)
         }
         return flag;
     }
-    //³¤Îª1µÄ¾ØĞÎ
+    //é•¿ä¸º1çš„çŸ©å½¢
     else if (lt.x == rb.x && lt.y != rb.y)
     {
         int flag = 1;
@@ -65,7 +65,7 @@ bool isSameBlock(Mat f, Mat mark, Point lt, Point rb, int xgm)
         }
         return flag;
     }
-    //¹ÂÁ¢µã¾ØĞÎ
+    //å­¤ç«‹ç‚¹çŸ©å½¢
     else if (lt.x == rb.x && lt.y == rb.y)
     {
         //double g1 = f.at<uchar>(lt);
@@ -74,7 +74,7 @@ bool isSameBlock(Mat f, Mat mark, Point lt, Point rb, int xgm)
     }
 }
 
-//¸ø»Ò¶ÈÍ¼fÒÑ¾­ËÑË÷¹ıµÄ¾ØĞÎ×ÓÄ£Ê½×ö±ê¼Ç
+//ç»™ç°åº¦å›¾få·²ç»æœç´¢è¿‡çš„çŸ©å½¢å­æ¨¡å¼åšæ ‡è®°
 void mark(Mat& mark, Point lt, Point rb) {
     for (int i = lt.y; i <= rb.y; i++)
         for (int j = lt.x; j <= rb.x; j++)
@@ -125,7 +125,7 @@ void EnCode(Mat& R, int height, int width, vector<char>& Q)
 
                 }
 
-                //Î»ÖÃ´Ó1¿ªÊ¼ ²»ÊÇ´Ó0¿ªÊ¼ ËùÒÔ¶à¼õÈ¥1
+                //ä½ç½®ä»1å¼€å§‹ ä¸æ˜¯ä»0å¼€å§‹ æ‰€ä»¥å¤šå‡å»1
                 int b = ceil(log((double)(width - c - count)) / log(2.0f));
                 if (0 == count)
                 {
@@ -160,7 +160,7 @@ void Decode(Mat& R, int height, int width, const vector<char>& Q)
 {
     int n = 0;
     int count = 0;
-    //ÉÏ¸ö·ÇÁãÔªËØµÄÎ»ÖÃ
+    //ä¸Šä¸ªéé›¶å…ƒç´ çš„ä½ç½®
     int c = 0;
     int row = 0;
     int num = 0;
@@ -194,7 +194,7 @@ void Decode(Mat& R, int height, int width, const vector<char>& Q)
             c = 0;
             num = 0;
             continue;
-            //Èç¹ûÊÇ0
+            //å¦‚æœæ˜¯0
             //if(c == 0)
             //{
             //	row++;
@@ -273,7 +273,7 @@ void Decode(Mat& R, int height, int width, const vector<char>& Q)
         }
         else
         {
-            //Èç¹ûÊÇ0
+            //å¦‚æœæ˜¯0
             if(c == 0)
             {
                 row++;
@@ -331,7 +331,7 @@ void Decode(Mat& R, int height, int width, const vector<char>& Q)
 
 }
 
-//Ñ°ÕÒ×î´óµÄ¾ØĞÎ×ÓÄ£Ê½
+//å¯»æ‰¾æœ€å¤§çš„çŸ©å½¢å­æ¨¡å¼
 Point REHelper_Diagonal(Mat f, Mat mark, int M, int N, Point start, int xgm) {
     Point end = start;
     Point end1, end2;
@@ -444,7 +444,7 @@ Point REHelper_Horizonal(Mat f, Mat mark, int M, int N, Point start, int xgm) {
     else return end1;
 }
 
-//»Ò¶ÈÍ¼f±àÂë
+//ç°åº¦å›¾fç¼–ç 
 void RNAMCEncoding_Diagonal(Mat f, Mat& R, Mat& markMatrix, int M, int N, vector<algorithmColor>& p, vector<char>& q, int xgm) {
     Point start, end;
     for (int i = 0; i < M; i++)
@@ -467,21 +467,21 @@ void RNAMCEncoding_Diagonal(Mat f, Mat& R, Mat& markMatrix, int M, int N, vector
                     R.at<uchar>(start) = 1;
                     R.at<uchar>(end) = 2;
                 }
-                //¿íÎª1µÄ¾ØĞÎ
+                //å®½ä¸º1çš„çŸ©å½¢
                 if (start.x != end.x && start.y == end.y)
                 {
                     p1.setGrey(Scalar(g1, 0, 0, g4));
                     R.at<uchar>(start) = 1;
                     R.at<uchar>(end) = 2;
                 }
-                //³¤Îª1µÄ¾ØĞÎ
+                //é•¿ä¸º1çš„çŸ©å½¢
                 if (start.x == end.x && start.y != end.y)
                 {
                     p1.setGrey(Scalar(g1, 0, 0, g4));
                     R.at<uchar>(start) = 1;
                     R.at<uchar>(end) = 2;
                 }
-                //¹ÂÁ¢µã¾ØĞÎ
+                //å­¤ç«‹ç‚¹çŸ©å½¢
                 if (start.x == end.x && start.y == end.y)
                 {
                     p1.setGrey(Scalar(g1, 0, 0, 0));
@@ -527,21 +527,21 @@ void RNAMCEncoding_Horizonal(Mat f, Mat& R, Mat& markMatrix, int M, int N, vecto
                     R.at<uchar>(start) = 1;
                     R.at<uchar>(end) = 2;
                 }
-                //¿íÎª1µÄ¾ØĞÎ
+                //å®½ä¸º1çš„çŸ©å½¢
                 if (start.x != end.x && start.y == end.y)
                 {
                     p1.setGrey(Scalar(g1, 0, 0, g4));
                     R.at<uchar>(start) = 1;
                     R.at<uchar>(end) = 2;
                 }
-                //³¤Îª1µÄ¾ØĞÎ
+                //é•¿ä¸º1çš„çŸ©å½¢
                 if (start.x == end.x && start.y != end.y)
                 {
                     p1.setGrey(Scalar(g1, 0, 0, g4));
                     R.at<uchar>(start) = 1;
                     R.at<uchar>(end) = 2;
                 }
-                //¹ÂÁ¢µã¾ØĞÎ
+                //å­¤ç«‹ç‚¹çŸ©å½¢
                 if (start.x == end.x && start.y == end.y)
                 {
                     p1.setGrey(Scalar(g1, 0, 0, 0));
@@ -566,7 +566,7 @@ void RNAMCEncoding_Horizonal(Mat f, Mat& R, Mat& markMatrix, int M, int N, vecto
     }*/
 }
 
-//»Ö¸´¾ØĞÎ×ÓÄ£Ê½µÄÖµ
+//æ¢å¤çŸ©å½¢å­æ¨¡å¼çš„å€¼
 void RDHelper(Mat& R, algorithmColor p1) {
     Point lt = p1.getLt();
     Point rb = p1.getRb();
@@ -574,7 +574,7 @@ void RDHelper(Mat& R, algorithmColor p1) {
     uchar g2 = p1.getGrey()[1];
     uchar g3 = p1.getGrey()[2];
     uchar g4 = p1.getGrey()[3];
-    //±ê×¼¾ØĞÎ
+    //æ ‡å‡†çŸ©å½¢
     if (lt.x < rb.x && lt.y < rb.y)
     {
 
@@ -591,7 +591,7 @@ void RDHelper(Mat& R, algorithmColor p1) {
             }
         }
     }
-    //¿íÎª1µÄ¾ØĞÎ
+    //å®½ä¸º1çš„çŸ©å½¢
     if (lt.x != rb.x && lt.y == rb.y)
     {
         for (int i = lt.x; i <= rb.x; i++)
@@ -601,7 +601,7 @@ void RDHelper(Mat& R, algorithmColor p1) {
             R.at<uchar>(Point(i, lt.y)) = gest;
         }
     }
-    //³¤Îª1µÄ¾ØĞÎ
+    //é•¿ä¸º1çš„çŸ©å½¢
     if (lt.x == rb.x && lt.y != rb.y)
     {
         for (int j = lt.y; j <= rb.y; j++)
@@ -611,14 +611,14 @@ void RDHelper(Mat& R, algorithmColor p1) {
             R.at<uchar>(Point(lt.x, j)) = gest;
         }
     }
-    //¹ÂÁ¢µã¾ØĞÎ
+    //å­¤ç«‹ç‚¹çŸ©å½¢
     if (lt.x == rb.x && lt.y == rb.y)
     {
         R.at<uchar>(Point(lt.x, lt.y)) = g1;
     }
 }
 
-//»Ò¶ÈÍ¼f½âÂë
+//ç°åº¦å›¾fè§£ç 
 void RNAMCDecoding(Mat& R, int M, int N, vector<algorithmColor> p, vector<char> q) {
     for (int i = 0; i < p.size(); i++)
         RDHelper(R, p[i]);
@@ -652,11 +652,11 @@ void segmentDisplay(Mat& display, vector<algorithmColor> p) {
     }
 }
 
-////ÊµÏÖÍù×ø±ê±íÀï²åÈëÎ»ÖÃµÄ¹¦ÄÜ
+////å®ç°å¾€åæ ‡è¡¨é‡Œæ’å…¥ä½ç½®çš„åŠŸèƒ½
 //void CEHelper(vector<bool>& b, int cur_pos, int last_pos = -1, int last_value = 0) {
-//	//ÓÃÀ´ÅĞ¶ÏĞèÒª¶àÉÙ¸öbitÎ»
+//	//ç”¨æ¥åˆ¤æ–­éœ€è¦å¤šå°‘ä¸ªbitä½
 //	int d;
-//	//¼ÇÂ¼ĞòºÅ»òÕß¾àÀë
+//	//è®°å½•åºå·æˆ–è€…è·ç¦»
 //	int i;
 //	if (last_pos != -1) {
 //		d = N - last_pos - 1;
@@ -694,9 +694,9 @@ void segmentDisplay(Mat& display, vector<algorithmColor> p) {
 //		b.push_back(a[j]);
 //}
 //
-////ÊµÏÖ´Ó×ø±ê±íÀïÈ¡³öÎ»ÖÃµÄ¹¦ÄÜ
+////å®ç°ä»åæ ‡è¡¨é‡Œå–å‡ºä½ç½®çš„åŠŸèƒ½
 //int CDHelper(vector<bool>& b, vector<bool>::iterator& i, int last_pos = -1, int last_value = 0) {
-//	//ÓÃÀ´ÅĞ¶ÏĞèÒª¶àÉÙ¸öbitÎ»
+//	//ç”¨æ¥åˆ¤æ–­éœ€è¦å¤šå°‘ä¸ªbitä½
 //	int d;
 //	if (last_pos != -1)
 //		d = N - last_pos - 1;
@@ -727,12 +727,12 @@ void segmentDisplay(Mat& display, vector<algorithmColor> p) {
 //	else return pos;
 //}
 //
-////R	¾ØÕó×ø±ê±àÂë
+////R	çŸ©é˜µåæ ‡ç¼–ç 
 //void CoordinateEncoding(Mat R, vector<bool>& b) {
 //	for (int i = 0; i < M; i++) {
-//		//±¾ĞĞÊÇ·ñÈ«Áã
+//		//æœ¬è¡Œæ˜¯å¦å…¨é›¶
 //		int flag = 0;
-//		//±¾ĞĞÊÇ·ñÓĞÔªËØÔÚ×îÄ©Î²
+//		//æœ¬è¡Œæ˜¯å¦æœ‰å…ƒç´ åœ¨æœ€æœ«å°¾
 //		int flag1 = 0;
 //		int last_pos = -1;
 //		int last_value = 0;
@@ -763,10 +763,10 @@ void segmentDisplay(Mat& display, vector<algorithmColor> p) {
 //	}
 //}
 //
-////R¾ØÕó×ø±ê½âÂë
+////RçŸ©é˜µåæ ‡è§£ç 
 //void CoordinateDecoding(vector<bool>& b, Mat& R) {
 //	R = Mat::zeros(M, N, CV_32FC1);
-//	//µ±Ç°ĞĞ
+//	//å½“å‰è¡Œ
 //	int cur_row = 0;
 //	vector<bool>::iterator i = b.begin();
 //	int last_pos = -1;

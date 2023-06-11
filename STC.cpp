@@ -1,6 +1,6 @@
 #include "STC.h"
 
-//²ÎÊı³õÊ¼»¯
+//å‚æ•°åˆå§‹åŒ–
 int reg_num = 0;
 int bitnum = 0;
 double thresU = 0;
@@ -8,18 +8,18 @@ double thresVar = 0;
 int cur_block = -1;
 
 //Tree.cpp
-void InitialNode(treeNode*& a)//³õÊ¼»¯Ê÷½áµã
+void InitialNode(treeNode*& a)//åˆå§‹åŒ–æ ‘ç»“ç‚¹
 {
 	a->parent = NULL; a->nwchild = NULL; a->nechild = NULL; a->confirm = '0';
 }
 
-void InsertNode(treeNode*& root)//²åÈëº¢×Ó½áµã
+void InsertNode(treeNode*& root)//æ’å…¥å­©å­ç»“ç‚¹
 {
 	root->nwchild = new treeNode; InitialNode(root->nwchild); root->nwchild->parent = root;
 	root->nechild = new treeNode; InitialNode(root->nechild); root->nechild->parent = root;
 }
 
-void LevelOrder(vector<char>& Q, treeNode* root)//²ã´Î±éÀú
+void LevelOrder(vector<char>& Q, treeNode* root)//å±‚æ¬¡éå†
 {
 	Q.push_back(root->confirm);
 	if (root->nwchild != NULL)
@@ -33,7 +33,7 @@ void LevelOrder(vector<char>& Q, treeNode* root)//²ã´Î±éÀú
 }
 
 //PSNR.cpp
-double STC_PSNR(IplImage*& img1, IplImage*& imggest) //¼ÆËãPSNR
+double STC_PSNR(IplImage*& img1, IplImage*& imggest) //è®¡ç®—PSNR
 
 {
 	int M = img1->height;
@@ -61,7 +61,7 @@ double STC_PSNR(IplImage*& img1, IplImage*& imggest) //¼ÆËãPSNR
 }
 
 //MakeImggest.cpp
-void MakeImggest(IplImage*& imggest, vector<colorListStandard>& P, vector<doubleCoordinate> C, Region** all_region)//½¨Á¢gestÍ¼Ïñ
+void MakeImggest(IplImage*& imggest, vector<colorListStandard>& P, vector<doubleCoordinate> C, Region** all_region)//å»ºç«‹gestå›¾åƒ
 {
 	uchar g1 = 0, g2 = 0, g3 = 0, g4 = 0;
 	for (unsigned int i = 0; i < P.size(); i++)
@@ -114,7 +114,7 @@ void MakeImggest(IplImage*& imggest, vector<colorListStandard>& P, vector<double
 }
 
 //JudgeSameBlock.cpp
-bool JudgeSameBlock(double epsilon, IplImage*& img1, int x1, int y1, int x2, int y2)//ÅĞ¶Ï¾ØĞÎÊÇ·ñÎªÍ¬Àà¿ézyp
+bool JudgeSameBlock(double epsilon, IplImage*& img1, int x1, int y1, int x2, int y2)//åˆ¤æ–­çŸ©å½¢æ˜¯å¦ä¸ºåŒç±»å—zyp
 {
 
 	uchar* ptrtemp = (uchar*)(img1->imageData + y1 * img1->widthStep);
@@ -154,14 +154,14 @@ bool JudgeSameBlock(double epsilon, IplImage*& img1, int x1, int y1, int x2, int
 }
 
 //BuildTreeT.cpp
-void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, vector<doubleCoordinate>& C, int& num, double epsilon, int x1, int y1, int x2, int y2)//·Ö¸îÔ­Í¼.½¨Á¢¾ØÕóR.ÑÕÉ«±íP
+void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, vector<doubleCoordinate>& C, int& num, double epsilon, int x1, int y1, int x2, int y2)//åˆ†å‰²åŸå›¾.å»ºç«‹çŸ©é˜µR.é¢œè‰²è¡¨P
 {
 	//uchar* ptr=(uchar*) (img1->imageData);
 	//colorListStandard temp;
 	//doubleCoordinate tempc;
 
 
-	//if (root->nwchild==NULL||root->nechild==NULL) cout << "allocation failed" << endl;//µİ¹é½¨Á¢¶ş²æÊ÷½á¹¹
+	//if (root->nwchild==NULL||root->nechild==NULL) cout << "allocation failed" << endl;//é€’å½’å»ºç«‹äºŒå‰æ ‘ç»“æ„
 
 
 
@@ -170,9 +170,9 @@ void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, 
 	doubleCoordinate tempc;
 	InsertNode(root);
 
-	if (root->nwchild == NULL || root->nechild == NULL) cout << "allocation failed" << endl;//µİ¹é½¨Á¢¶ş²æÊ÷½á¹¹
+	if (root->nwchild == NULL || root->nechild == NULL) cout << "allocation failed" << endl;//é€’å½’å»ºç«‹äºŒå‰æ ‘ç»“æ„
 
-	if (num % 2 == 1)  //num²»Îª2µÄÕûÊı±¶£¬Ë®Æ½·Ö¸ô
+	if (num % 2 == 1)  //numä¸ä¸º2çš„æ•´æ•°å€ï¼Œæ°´å¹³åˆ†éš”
 	{
 		num = 0;
 
@@ -194,7 +194,7 @@ void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, 
 			return;
 		}
 
-		if (JudgeSameBlock(epsilon, img1, x1, y1, x2, (y1 + y2 - 1) / 2))   //ÅĞ¶ÏÉÏ°ë²¿·ÖÊÇ·ñÎªÍ¬Àà¿é:nwchild
+		if (JudgeSameBlock(epsilon, img1, x1, y1, x2, (y1 + y2 - 1) / 2))   //åˆ¤æ–­ä¸ŠåŠéƒ¨åˆ†æ˜¯å¦ä¸ºåŒç±»å—:nwchild
 		{
 			root->nwchild->confirm = '1';
 			ptr = (uchar*)(img1->imageData + y1 * img1->widthStep);
@@ -207,11 +207,11 @@ void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, 
 
 
 		}
-		else { BuildTreeT(img1, root->nwchild, P, C, num, epsilon, x1, y1, x2, (y1 + y2 - 1) / 2); }//Èô·ÇÍ¬Àà¿éÔòµİ¹éµ÷ÓÃ
+		else { BuildTreeT(img1, root->nwchild, P, C, num, epsilon, x1, y1, x2, (y1 + y2 - 1) / 2); }//è‹¥éåŒç±»å—åˆ™é€’å½’è°ƒç”¨
 
 		num = 0;
 
-		if (JudgeSameBlock(epsilon, img1, x1, (y1 + y2 + 1) / 2, x2, y2))    //ÅĞ¶ÏÏÂ°ë²¿·Ö:nechild
+		if (JudgeSameBlock(epsilon, img1, x1, (y1 + y2 + 1) / 2, x2, y2))    //åˆ¤æ–­ä¸‹åŠéƒ¨åˆ†:nechild
 		{
 			root->nechild->confirm = '1';
 			ptr = (uchar*)(img1->imageData + (y1 + y2 + 1) / 2 * img1->widthStep);
@@ -222,12 +222,12 @@ void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, 
 			tempc.x1 = x1; tempc.x2 = x2; tempc.y1 = (y1 + y2 + 1) / 2; tempc.y2 = y2;
 			C.push_back(tempc);
 		}
-		else { BuildTreeT(img1, root->nechild, P, C, num, epsilon, x1, (y1 + y2 + 1) / 2, x2, y2); }//µİ¹éµ÷ÓÃ
+		else { BuildTreeT(img1, root->nechild, P, C, num, epsilon, x1, (y1 + y2 + 1) / 2, x2, y2); }//é€’å½’è°ƒç”¨
 
 
 	}
 
-	else if (num % 2 == 0)  //numÊÇ2µÄÕûÊı±¶£¬´¹Ö±·Ö¸ô
+	else if (num % 2 == 0)  //numæ˜¯2çš„æ•´æ•°å€ï¼Œå‚ç›´åˆ†éš”
 	{
 		num = 1;
 
@@ -252,7 +252,7 @@ void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, 
 		}
 
 
-		if (JudgeSameBlock(epsilon, img1, x1, y1, (x1 + x2 - 1) / 2, y2))  //ÅĞ¶Ï×ó°ë²¿·Ö:nwchild
+		if (JudgeSameBlock(epsilon, img1, x1, y1, (x1 + x2 - 1) / 2, y2))  //åˆ¤æ–­å·¦åŠéƒ¨åˆ†:nwchild
 		{
 			root->nwchild->confirm = '1';
 			ptr = (uchar*)(img1->imageData + y1 * img1->widthStep);
@@ -263,12 +263,12 @@ void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, 
 			tempc.x1 = x1; tempc.x2 = (x1 + x2 - 1) / 2; tempc.y1 = y1; tempc.y2 = y2;
 			C.push_back(tempc);
 		}
-		else { BuildTreeT(img1, root->nwchild, P, C, num, epsilon, x1, y1, (x1 + x2 - 1) / 2, y2); }//µİ¹éµ÷ÓÃ
+		else { BuildTreeT(img1, root->nwchild, P, C, num, epsilon, x1, y1, (x1 + x2 - 1) / 2, y2); }//é€’å½’è°ƒç”¨
 
 		num = 1;
 
 
-		if (JudgeSameBlock(epsilon, img1, (x1 + x2 + 1) / 2, y1, x2, y2))   //ÅĞ¶ÏÓÒ°ë²¿·Ö:nechild
+		if (JudgeSameBlock(epsilon, img1, (x1 + x2 + 1) / 2, y1, x2, y2))   //åˆ¤æ–­å³åŠéƒ¨åˆ†:nechild
 		{
 			root->nechild->confirm = '1';
 			ptr = (uchar*)(img1->imageData + y1 * img1->widthStep);
@@ -279,7 +279,7 @@ void BuildTreeT(IplImage*& img1, treeNode*& root, vector<colorListStandard>& P, 
 			tempc.x1 = (x1 + x2 + 1) / 2; tempc.x2 = x2; tempc.y1 = y1; tempc.y2 = y2;
 			C.push_back(tempc);
 		}
-		else { BuildTreeT(img1, root->nechild, P, C, num, epsilon, (x1 + x2 + 1) / 2, y1, x2, y2); }//µİ¹éµ÷ÓÃ
+		else { BuildTreeT(img1, root->nechild, P, C, num, epsilon, (x1 + x2 + 1) / 2, y1, x2, y2); }//é€’å½’è°ƒç”¨
 
 
 	}
@@ -315,14 +315,14 @@ void Region_Segm(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLowerLef
 
 	if (bit == '0')
 	{
-		if (num % 2 == 0) //´¹Ö±
+		if (num % 2 == 0) //å‚ç›´
 		{
 			num = 1;
 			Region_Segm(UpperLeft, UR, PreLowerLeft, Xleft, Yupper, Length / 2, Width, all_region, P, C, Q, num);
 			num = 1;
 			Region_Segm(UR, UpperRight, DUMMY, Xleft + Length / 2, Yupper, Length - Length / 2, Width, all_region, P, C, Q, num);
 		}
-		else //Ë®Æ½
+		else //æ°´å¹³
 		{
 			num = 0;
 			Region_Segm(UpperLeft, UpperRight, PLL, Xleft, Yupper, Length, Width / 2, all_region, P, C, Q, num);
@@ -411,7 +411,7 @@ void Leaf_Operation(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLower
 
 	//cout << "cur_block:" << cur_block <<  endl;
 	reg_num++;
-	//±éÀúÃ¿¸öSEGMENT
+	//éå†æ¯ä¸ªSEGMENT
 	while (true)
 	{
 		//cout << start_segment->Length << "  " << endl;
@@ -421,15 +421,15 @@ void Leaf_Operation(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLower
 			Region* neighbour_region = start_segment->ActiveELink->Reg;
 			Region* neighbour_father = FindParent(neighbour_region);
 			Region* cur_father = FindParent(cur_region);
-			//Í¬Ò»ÇøÓò
+			//åŒä¸€åŒºåŸŸ
 			if (neighbour_father == cur_father)
 			{
 			}
-			//²»Í¬ÇøÓò
+			//ä¸åŒåŒºåŸŸ
 			else
 			{
 				double varnew = Varc(cur_father->Size, neighbour_father->Size, cur_father->Var, neighbour_father->Var, cur_father->Mean, neighbour_father->Mean);
-				//¿ÉÒÔºÏ²¢
+				//å¯ä»¥åˆå¹¶
 				if (neighbour_father->Mean - cur_father->Mean >= -thresU && neighbour_father->Mean - cur_father->Mean <= thresU && varnew <= thresVar)
 				{
 
@@ -439,7 +439,7 @@ void Leaf_Operation(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLower
 					cur_father->Father = neighbour_father;
 					reg_num--;
 				}
-				//²»ÄÜºÏ²¢
+				//ä¸èƒ½åˆå¹¶
 				else
 				{
 
@@ -462,7 +462,7 @@ void Leaf_Operation(Segment* UpperLeft, Segment*& UpperRight, Segment*& PreLower
 
 	}
 
-	//´Ë¿é±éÀúÍê³É,ÖØĞÂ¹¹Ôìwaveform,Upperright
+	//æ­¤å—éå†å®Œæˆ,é‡æ–°æ„é€ waveform,Upperright
 
 	if (start_segment != NULL && start_segment->SucLink != NULL)
 	{
@@ -528,7 +528,7 @@ Region* FindParent(Region* p)
 
 //BPP.cpp
 using namespace std;
-double BPP(vector<colorListStandard>& P, int M, int N, vector<char>& Q)  //¼ÆËãBPP
+double BPP(vector<colorListStandard>& P, int M, int N, vector<char>& Q)  //è®¡ç®—BPP
 
 {
 

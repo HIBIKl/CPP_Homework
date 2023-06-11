@@ -296,7 +296,7 @@ void RestoreImage(IplImage* img, CvMat* markMatrix, CvMat* R, map<unsigned int, 
 	for (int i = 1; i <= color_list.size(); i++)
 	{
 		map<unsigned int, ColorNode>::iterator it = color_list.find(i);
-		//ÏÈ²éÕÒÏÂÒ»¸öÎ´¼ÆËãµÄ·Ö¿é Æğµã×ø±ê
+		//å…ˆæŸ¥æ‰¾ä¸‹ä¸€ä¸ªæœªè®¡ç®—çš„åˆ†å— èµ·ç‚¹åæ ‡
 		while (x2 < width)
 		{
 			if ((markMatrix->data.ptr + markMatrix->step * y2)[x2++] == 0)
@@ -313,12 +313,12 @@ void RestoreImage(IplImage* img, CvMat* markMatrix, CvMat* R, map<unsigned int, 
 
 		x1 = --x2;
 
-		//ÔÙ²éÕÒ³öÕâ¸ö¿éµÄ (x1,y1) (x2,y2)
+		//å†æŸ¥æ‰¾å‡ºè¿™ä¸ªå—çš„ (x1,y1) (x2,y2)
 		if (0 == (it->second).kind)
 		{
 			while (x2 < width)
 			{
-				//x2ÒªÏÈ×ßÒ»²½
+				//x2è¦å…ˆèµ°ä¸€æ­¥
 				if ((R->data.ptr + R->step * y2)[++x2] != 0 || (markMatrix->data.ptr + markMatrix->step * y2)[x2] == 1)
 					break;
 			}
@@ -420,7 +420,7 @@ void RestoreImageValue(IplImage* img, ColorNode node, int x1, int y1, int x2, in
 }
 
 //PSNR.cpp
-//¼ÆËã·åÖµĞÅÔë±È£¨PSNR£©
+//è®¡ç®—å³°å€¼ä¿¡å™ªæ¯”ï¼ˆPSNRï¼‰
 double PSNR(IplImage* img, IplImage* newImg)
 {
 	int yn = img->height;
@@ -439,7 +439,7 @@ double PSNR(IplImage* img, IplImage* newImg)
 }
 
 //BPP.cpp
-//¼ÆËãÑ¹ËõÍ¼ÏñµÄ±ÈÌØÂÊ£¨Bits Per Pixel£©
+//è®¡ç®—å‹ç¼©å›¾åƒçš„æ¯”ç‰¹ç‡ï¼ˆBits Per Pixelï¼‰
 double BPP(map<unsigned int, ColorNode>& color_list, int xn, int yn, vector<char>& Q)
 {
 	int a1 = 0, a2 = 0, a3 = 0;
@@ -586,7 +586,7 @@ void EnCode(CvMat* R, int height, int width, vector<char>& Q)
 					Q.push_back('0');
 				}
 
-				//Î»ÖÃ´Ó1¿ªÊ¼ ²»ÊÇ´Ó0¿ªÊ¼ ËùÒÔ¶à¼õÈ¥1
+				//ä½ç½®ä»1å¼€å§‹ ä¸æ˜¯ä»0å¼€å§‹ æ‰€ä»¥å¤šå‡å»1
 				int b = ceil(log((double)(width - c - count)) / log(2.0f));
 				if (0 == count)
 				{
@@ -621,7 +621,7 @@ void Decode(CvMat* R, int height, int width, const vector<char>& Q)
 {
 	int n = 0;
 	int count = 0;
-	//ÉÏ¸ö·ÇÁãÔªËØµÄÎ»ÖÃ
+	//ä¸Šä¸ªéé›¶å…ƒç´ çš„ä½ç½®
 	int c = 0;
 	int row = 0;
 	int num = 0;
@@ -655,7 +655,7 @@ void Decode(CvMat* R, int height, int width, const vector<char>& Q)
 			c = 0;
 			num = 0;
 			continue;
-			//Èç¹ûÊÇ0
+			//å¦‚æœæ˜¯0
 			//if(c == 0)
 			//{
 			//	row++;
@@ -734,7 +734,7 @@ void Decode(CvMat* R, int height, int width, const vector<char>& Q)
 		}
 		else
 		{
-			//Èç¹ûÊÇ0
+			//å¦‚æœæ˜¯0
 			if(c == 0)
 			{
 				row++;

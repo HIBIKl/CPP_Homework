@@ -1,17 +1,17 @@
 #pragma once
 #include<opencv.hpp>
-#include <opencv2\imgproc\types_c.h> //Ã»ÓÃµÄÍ·ÎÄ¼ş
+#include <opencv2\imgproc\types_c.h> //æ²¡ç”¨çš„å¤´æ–‡ä»¶
 #include<iostream>
 #include<vector>
 #include<cmath>
-//ÆúÓÃwindows.h
+//å¼ƒç”¨windows.h
 //#include <windows.h>
 #include <time.h>
 
 //using namespace cv;
 using namespace std;
 
-//ÑÕÉ«±í
+//é¢œè‰²è¡¨
 class algorithmColor
 {
     cv::Point lt;
@@ -27,15 +27,15 @@ public:
     cv::Scalar getGrey() { return grey; }
 };
 
-//µ¼ÖÂACCESS_MASK³åÍ»
-//¼ÆÊ±
+//å¯¼è‡´ACCESS_MASKå†²çª
+//è®¡æ—¶
 //class MyTimer {
 //private:
 //    int _freq;
 //    LARGE_INTEGER _begin;
 //    LARGE_INTEGER _end;
 //public:
-//    long costTime;            // »¨·ÑµÄÊ±¼ä(¾«È·µ½Î¢Ãë)
+//    long costTime;            // èŠ±è´¹çš„æ—¶é—´(ç²¾ç¡®åˆ°å¾®ç§’)
 //public:
 //    MyTimer() {
 //        LARGE_INTEGER tmp;
@@ -43,14 +43,14 @@ public:
 //        _freq = tmp.QuadPart;
 //        costTime = 0;
 //    }
-//    void Start() {            // ¿ªÊ¼¼ÆÊ±
+//    void Start() {            // å¼€å§‹è®¡æ—¶
 //        QueryPerformanceCounter(&_begin);
 //    }
-//    void End() {                // ½áÊø¼ÆÊ±
+//    void End() {                // ç»“æŸè®¡æ—¶
 //        QueryPerformanceCounter(&_end);
 //        costTime = (long)((_end.QuadPart - _begin.QuadPart) * 1000 / _freq);
 //    }
-//    void Reset() {            // ¼ÆÊ±Çå0
+//    void Reset() {            // è®¡æ—¶æ¸…0
 //        costTime = 0;
 //    }
 //};

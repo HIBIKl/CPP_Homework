@@ -3,12 +3,12 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
-
+CONFIG += utf8
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-#æ·»åŠ æ–‡ä»¶èµ„æº
+#Ìí¼ÓÎÄ¼ş×ÊÔ´
 SOURCES += \
     main.cpp \
     widget.cpp \
@@ -37,7 +37,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-//å¯¼å…¥è‡ªå®šä¹‰ç»„ä»¶
+//µ¼Èë×Ô¶¨Òå×é¼ş
 SOURCES += \
     ./MaterialSDK/components/qtmaterialavatar.cpp \
     ./MaterialSDK/components/lib/qtmaterialstyle.cpp \
@@ -165,13 +165,13 @@ HEADERS += \
     ./MaterialSDK/components/qtmateriallistitem.h \
     ./MaterialSDK/components/qtmateriallistitem_p.h
 
-#å¯¼å…¥Materialç»„ä»¶åº“çš„SDK
-#å¡«ç»å¯¹è·¯å¾„ï¼Œå¦åˆ™æ— æ³•ç¼–è¯‘
+#µ¼ÈëMaterial×é¼ş¿âµÄSDK
+#Ìî¾ø¶ÔÂ·¾¶£¬·ñÔòÎŞ·¨±àÒë
 LIBS += F:/SDK/MaterialSDK/staticlib/libcomponents.a
 INCLUDEPATH += ./MaterialSDK/components
 PRE_TARGETDEPS += F:/SDK/MaterialSDK/staticlib/libcomponents.a
 
-#subdirsæ¨¡æ¿å‘Šè¯‰qmakeç”Ÿæˆä¸€ä¸ªmakefileï¼Œå®ƒå¯ä»¥è¿›å…¥åˆ°ç‰¹å®šå­ç›®å½•å¹¶ä¸ºè¿™ä¸ªç›®å½•ä¸­çš„é¡¹ç›®æ–‡ä»¶ç”Ÿæˆmakefileå¹¶ä¸”ä¸ºå®ƒè°ƒç”¨makeã€‚
+#subdirsÄ£°å¸æËßqmakeÉú³ÉÒ»¸ömakefile£¬Ëü¿ÉÒÔ½øÈëµ½ÌØ¶¨×ÓÄ¿Â¼²¢ÎªÕâ¸öÄ¿Â¼ÖĞµÄÏîÄ¿ÎÄ¼şÉú³Émakefile²¢ÇÒÎªËüµ÷ÓÃmake¡£
 SUBDIRS += \
     ./MaterialSDK/components/components.pro
 
@@ -180,7 +180,7 @@ RESOURCES += \
     resources.qrc
 
 
-#opencv3.4.16ç¯å¢ƒå˜é‡
+#opencv3.4.16»·¾³±äÁ¿
 INCLUDEPATH += D:/opencv3.4.16/build/include \
                D:/opencv3.4.16/build/include/opencv \
                D:/opencv3.4.16/build/include/opencv2 \

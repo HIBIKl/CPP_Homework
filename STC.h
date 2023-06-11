@@ -16,15 +16,15 @@
 #include <tchar.h>
 
 //targetver.h
-// ÒÔÏÂºê¶¨ÒåÒªÇóµÄ×îµÍÆ½Ì¨¡£ÒªÇóµÄ×îµÍÆ½Ì¨
-// ÊÇ¾ßÓĞÔËĞĞÓ¦ÓÃ³ÌĞòËùĞè¹¦ÄÜµÄ Windows¡¢Internet Explorer µÈ²úÆ·µÄ
-// ×îÔç°æ±¾¡£Í¨¹ıÔÚÖ¸¶¨°æ±¾¼°¸üµÍ°æ±¾µÄÆ½Ì¨ÉÏÆôÓÃËùÓĞ¿ÉÓÃµÄ¹¦ÄÜ£¬ºê¿ÉÒÔ
-// Õı³£¹¤×÷¡£
+// ä»¥ä¸‹å®å®šä¹‰è¦æ±‚çš„æœ€ä½å¹³å°ã€‚è¦æ±‚çš„æœ€ä½å¹³å°
+// æ˜¯å…·æœ‰è¿è¡Œåº”ç”¨ç¨‹åºæ‰€éœ€åŠŸèƒ½çš„ Windowsã€Internet Explorer ç­‰äº§å“çš„
+// æœ€æ—©ç‰ˆæœ¬ã€‚é€šè¿‡åœ¨æŒ‡å®šç‰ˆæœ¬åŠæ›´ä½ç‰ˆæœ¬çš„å¹³å°ä¸Šå¯ç”¨æ‰€æœ‰å¯ç”¨çš„åŠŸèƒ½ï¼Œå®å¯ä»¥
+// æ­£å¸¸å·¥ä½œã€‚
 
-// Èç¹û±ØĞëÒªÕë¶ÔµÍÓÚÒÔÏÂÖ¸¶¨°æ±¾µÄÆ½Ì¨£¬ÇëĞŞ¸ÄÏÂÁĞ¶¨Òå¡£
-// ÓĞ¹Ø²»Í¬Æ½Ì¨¶ÔÓ¦ÖµµÄ×îĞÂĞÅÏ¢£¬Çë²Î¿¼ MSDN¡£
-#ifndef _WIN32_WINNT            // Ö¸¶¨ÒªÇóµÄ×îµÍÆ½Ì¨ÊÇ Windows Vista¡£
-#define _WIN32_WINNT 0x0600     // ½«´ËÖµ¸ü¸ÄÎªÏàÓ¦µÄÖµ£¬ÒÔÊÊÓÃÓÚ Windows µÄÆäËû°æ±¾¡£
+// å¦‚æœå¿…é¡»è¦é’ˆå¯¹ä½äºä»¥ä¸‹æŒ‡å®šç‰ˆæœ¬çš„å¹³å°ï¼Œè¯·ä¿®æ”¹ä¸‹åˆ—å®šä¹‰ã€‚
+// æœ‰å…³ä¸åŒå¹³å°å¯¹åº”å€¼çš„æœ€æ–°ä¿¡æ¯ï¼Œè¯·å‚è€ƒ MSDNã€‚
+#ifndef _WIN32_WINNT            // æŒ‡å®šè¦æ±‚çš„æœ€ä½å¹³å°æ˜¯ Windows Vistaã€‚
+#define _WIN32_WINNT 0x0600     // å°†æ­¤å€¼æ›´æ”¹ä¸ºç›¸åº”çš„å€¼ï¼Œä»¥é€‚ç”¨äº Windows çš„å…¶ä»–ç‰ˆæœ¬ã€‚
 #endif
 
 using namespace cv;
@@ -34,7 +34,7 @@ extern int bitnum ;
 extern int cur_block ;
 extern double thresU ;
 extern double thresVar ;
-struct colorListStandard//±ê×¼¾ØĞÎÑÕÉ«±í
+struct colorListStandard//æ ‡å‡†çŸ©å½¢é¢œè‰²è¡¨
 {
 	uchar g1,g2,g3,g4;
 };
@@ -44,29 +44,29 @@ struct doubleCoordinate{
 	int y1;
 	int x2;
 	int y2;
-};//×óÉÏ½Ç¼°ÓÒÏÂ½Ç×ø±ê
+};//å·¦ä¸Šè§’åŠå³ä¸‹è§’åæ ‡
 
 
 struct treeNode {
-	uchar confirm;   //±êÊ¶0»ò1
+	uchar confirm;   //æ ‡è¯†0æˆ–1
 	treeNode* parent;
 	treeNode* nwchild;
 	treeNode* nechild;
-};//¶¨ÒåÊ÷µÄ½áµã½á¹¹
+};//å®šä¹‰æ ‘çš„ç»“ç‚¹ç»“æ„
 
 int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4,const char* argv5,const char* argv6,const char* argv7);
 
-bool JudgeSameBlock ( double epsilon , IplImage *&img1 , int x1 , int y1 ,int x2 , int y2 );//ÅĞ¶Ï¾ØĞÎÊÇ·ñÎªÍ¬Àà¿é
+bool JudgeSameBlock ( double epsilon , IplImage *&img1 , int x1 , int y1 ,int x2 , int y2 );//åˆ¤æ–­çŸ©å½¢æ˜¯å¦ä¸ºåŒç±»å—
 
-void BuildTreeT (   IplImage* &img1 , treeNode* &root , vector<colorListStandard> &P, vector<doubleCoordinate> &C, int &num , double epsilon , int x1 , int y1 ,int x2 , int y2 );//·Ö¸îÔ­Í¼.½¨Á¢¶ş²æÊ÷T.ÑÕÉ«±íP
+void BuildTreeT (   IplImage* &img1 , treeNode* &root , vector<colorListStandard> &P, vector<doubleCoordinate> &C, int &num , double epsilon , int x1 , int y1 ,int x2 , int y2 );//åˆ†å‰²åŸå›¾.å»ºç«‹äºŒå‰æ ‘T.é¢œè‰²è¡¨P
 
 
-double STC_PSNR ( IplImage *&img1 , IplImage *&imggest );  //¼ÆËãPSNR
-double BPP ( vector<colorListStandard> &P  ,int M , int N , vector<char> &Q );  //¼ÆËãBPP
+double STC_PSNR ( IplImage *&img1 , IplImage *&imggest );  //è®¡ç®—PSNR
+double BPP ( vector<colorListStandard> &P  ,int M , int N , vector<char> &Q );  //è®¡ç®—BPP
 
-void InitialNode (treeNode* &a);//³õÊ¼»¯Ê÷½áµã
-void InsertNode (treeNode* &root);//²åÈëº¢×Ó½áµã
-void LevelOrder(vector<char> &Q , treeNode* root );//²ã´Î±éÀú
+void InitialNode (treeNode* &a);//åˆå§‹åŒ–æ ‘ç»“ç‚¹
+void InsertNode (treeNode* &root);//æ’å…¥å­©å­ç»“ç‚¹
+void LevelOrder(vector<char> &Q , treeNode* root );//å±‚æ¬¡éå†
 
 
 inline double Gst(int g2,int g1,int w)
@@ -179,9 +179,9 @@ struct Region
 {
   double Mean;
   double Var;
-  int Size;//±ß³¤
+  int Size;//è¾¹é•¿
   Region* Father;
-  int Count;//×ÓËïÇøÓòÊıÁ¿
+  int Count;//å­å­™åŒºåŸŸæ•°é‡
   int SegmentCount;//number of edges shared by the waveform
   Edge* EdgeLink;
 };
@@ -213,5 +213,5 @@ void SPLIT(Segment* UpperLeft  , int Size,int direction);
 
 void Leaf_Operation(Segment* UpperLeft , Segment* &UpperRight , Segment* &PreLowerLeft , int Xleft , int Yupper , int Length , int Width , vector<colorListStandard> &P , vector<doubleCoordinate> &C ,  Region** all_region);
 Region* FindParent(Region *p);
-void MakeImggest ( IplImage* &imggest ,  vector<colorListStandard> &P , vector<doubleCoordinate> C , Region** all_region );//½¨Á¢gestÍ¼Ïñ
+void MakeImggest ( IplImage* &imggest ,  vector<colorListStandard> &P , vector<doubleCoordinate> C , Region** all_region );//å»ºç«‹gestå›¾åƒ
 

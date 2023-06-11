@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
+    <width>1440</width>
     <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1280</width>
+    <width>1440</width>
     <height>800</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1280</width>
+    <width>1440</width>
     <height>800</height>
    </size>
   </property>
@@ -32,20 +32,20 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>-10</y>
-     <width>1280</width>
+     <y>0</y>
+     <width>1440</width>
      <height>800</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
-     <width>1280</width>
+     <width>1440</width>
      <height>800</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>1280</width>
+     <width>1440</width>
      <height>800</height>
     </size>
    </property>
@@ -60,16 +60,17 @@
    <widget class="QtMaterialRaisedButton" name="startCompression">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>639</y>
-      <width>381</width>
-      <height>131</height>
+      <x>20</x>
+      <y>660</y>
+      <width>450</width>
+      <height>121</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>微软雅黑</family>
       <pointsize>12</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -79,9 +80,9 @@
    <widget class="QtMaterialRaisedButton" name="saveImage">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>720</y>
-      <width>181</width>
+      <x>509</x>
+      <y>730</y>
+      <width>211</width>
       <height>51</height>
      </rect>
     </property>
@@ -89,6 +90,7 @@
      <font>
       <family>微软雅黑</family>
       <pointsize>10</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -98,17 +100,17 @@
    <widget class="QtMaterialRaisedButton" name="selectPicture">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>470</y>
-      <width>381</width>
-      <height>131</height>
+      <x>20</x>
+      <y>500</y>
+      <width>450</width>
+      <height>121</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>微软雅黑</family>
       <pointsize>12</pointsize>
-      <bold>false</bold>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -118,16 +120,16 @@
    <widget class="QtMaterialRadioButton" name="algorithm_ibr">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>470</y>
-      <width>131</width>
+      <x>690</x>
+      <y>691</y>
+      <width>121</width>
       <height>27</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -138,22 +140,22 @@
    <widget class="QtMaterialRadioButton" name="algorithm_tnam_diagonal">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>470</y>
-      <width>161</width>
+      <x>520</x>
+      <y>651</y>
+      <width>171</width>
       <height>27</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
       <bold>false</bold>
       <kerning>true</kerning>
      </font>
     </property>
     <property name="text">
-     <string>TNAM垂直</string>
+     <string>TNAM-垂直</string>
     </property>
     <property name="checkable">
      <bool>true</bool>
@@ -165,36 +167,36 @@
    <widget class="QtMaterialRadioButton" name="algorithm_tnam_horizonal">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>520</y>
-      <width>161</width>
+      <x>520</x>
+      <y>691</y>
+      <width>171</width>
       <height>27</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
       <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>TNAM水平</string>
+     <string>TNAM-水平</string>
     </property>
    </widget>
    <widget class="QtMaterialRadioButton" name="algorithm_trnam">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>520</y>
-      <width>131</width>
+      <x>690</x>
+      <y>651</y>
+      <width>121</width>
       <height>27</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -202,43 +204,49 @@
      <string>TRNAM</string>
     </property>
    </widget>
-   <widget class="QtMaterialRadioButton" name="algorithm_stc">
+   <widget class="QtMaterialRadioButton" name="algorithm_stc_vertical">
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>470</y>
-      <width>81</width>
+      <x>810</x>
+      <y>651</y>
+      <width>131</width>
       <height>27</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>10</pointsize>
+      <pointsize>9</pointsize>
       <bold>false</bold>
      </font>
     </property>
     <property name="text">
-     <string>STC</string>
+     <string>STC-垂直</string>
     </property>
    </widget>
    <widget class="QtMaterialSlider" name="variance_slider">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>660</y>
-      <width>231</width>
+      <x>620</x>
+      <y>590</y>
+      <width>271</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ClosedHandCursor</cursorShape>
     </property>
     <property name="maximum">
      <number>50</number>
     </property>
     <property name="singleStep">
-     <number>1</number>
+     <number>5</number>
+    </property>
+    <property name="pageStep">
+     <number>5</number>
     </property>
     <property name="value">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -247,9 +255,9 @@
    <widget class="QtMaterialRaisedButton" name="clearLog">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>720</y>
-      <width>391</width>
+      <x>1000</x>
+      <y>730</y>
+      <width>421</width>
       <height>51</height>
      </rect>
     </property>
@@ -257,6 +265,7 @@
      <font>
       <family>微软雅黑</family>
       <pointsize>10</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -266,9 +275,9 @@
    <widget class="QtMaterialRaisedButton" name="helpCenter">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>720</y>
-      <width>181</width>
+      <x>740</x>
+      <y>730</y>
+      <width>221</width>
       <height>51</height>
      </rect>
     </property>
@@ -276,6 +285,7 @@
      <font>
       <family>微软雅黑</family>
       <pointsize>10</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -285,10 +295,10 @@
    <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>50</y>
-      <width>391</width>
-      <height>651</height>
+      <x>1000</x>
+      <y>20</y>
+      <width>421</width>
+      <height>691</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -299,8 +309,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>389</width>
-       <height>649</height>
+       <width>419</width>
+       <height>689</height>
       </rect>
      </property>
      <widget class="QTextBrowser" name="textBrowser">
@@ -308,8 +318,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>391</width>
-        <height>651</height>
+        <width>421</width>
+        <height>691</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -342,10 +352,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>52</y>
-      <width>381</width>
-      <height>381</height>
+      <x>20</x>
+      <y>22</y>
+      <width>450</width>
+      <height>450</height>
      </rect>
     </property>
     <property name="font">
@@ -355,22 +365,32 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+color:grey</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="text">
-     <string>Original Image is here...</string>
+     <string extracomment="Original Image is here...">Original Image is here...</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+    <property name="buddy">
+     <cstring></cstring>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>50</y>
-      <width>381</width>
-      <height>381</height>
+      <x>510</x>
+      <y>20</y>
+      <width>450</width>
+      <height>450</height>
      </rect>
     </property>
     <property name="font">
@@ -380,10 +400,11 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+color:grey</string>
     </property>
     <property name="text">
-     <string>Output Image is here...</string>
+     <string extracomment="Output Image is here...">Output Image is here...</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -392,9 +413,9 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>660</y>
-      <width>111</width>
+      <x>530</x>
+      <y>590</y>
+      <width>91</width>
       <height>23</height>
      </rect>
     </property>
@@ -412,8 +433,8 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>630</y>
+      <x>530</x>
+      <y>550</y>
       <width>111</width>
       <height>23</height>
      </rect>
@@ -432,62 +453,26 @@
    <widget class="QtMaterialSlider" name="mean_value_slider">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>630</y>
-      <width>231</width>
+      <x>620</x>
+      <y>550</y>
+      <width>271</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ClosedHandCursor</cursorShape>
     </property>
     <property name="maximum">
      <number>50</number>
     </property>
     <property name="singleStep">
-     <number>1</number>
+     <number>5</number>
+    </property>
+    <property name="pageStep">
+     <number>5</number>
     </property>
     <property name="value">
-     <number>10</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>460</x>
-      <y>600</y>
-      <width>111</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Microsoft YaHei</family>
-      <pointsize>10</pointsize>
-      <stylestrategy>PreferAntialias</stylestrategy>
-     </font>
-    </property>
-    <property name="text">
-     <string>同类块阀值</string>
-    </property>
-   </widget>
-   <widget class="QtMaterialSlider" name="fast_threshold_slider">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>600</y>
-      <width>231</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <number>50</number>
-    </property>
-    <property name="singleStep">
-     <number>1</number>
-    </property>
-    <property name="value">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -496,8 +481,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>570</y>
+      <x>530</x>
+      <y>510</y>
       <width>111</width>
       <height>23</height>
      </rect>
@@ -516,20 +501,29 @@
    <widget class="QtMaterialSlider" name="epsilon_slider">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>570</y>
-      <width>231</width>
+      <x>620</x>
+      <y>510</y>
+      <width>271</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>ClosedHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="maximum">
      <number>50</number>
     </property>
     <property name="singleStep">
-     <number>1</number>
+     <number>5</number>
+    </property>
+    <property name="pageStep">
+     <number>5</number>
     </property>
     <property name="value">
-     <number>10</number>
+     <number>0</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -538,8 +532,8 @@
    <widget class="QtMaterialTextField" name="epsilon_label">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>570</y>
+      <x>880</x>
+      <y>510</y>
       <width>51</width>
       <height>21</height>
      </rect>
@@ -555,33 +549,7 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>10</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QtMaterialTextField" name="fast_threshold_label">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>600</y>
-      <width>51</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Consolas</family>
-      <pointsize>11</pointsize>
-      <strikeout>false</strikeout>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>10</string>
+     <string>0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -590,8 +558,8 @@
    <widget class="QtMaterialTextField" name="mean_value_label">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>630</y>
+      <x>880</x>
+      <y>550</y>
       <width>51</width>
       <height>21</height>
      </rect>
@@ -607,7 +575,7 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>10</string>
+     <string>0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -616,8 +584,8 @@
    <widget class="QtMaterialTextField" name="variance_label">
     <property name="geometry">
      <rect>
-      <x>770</x>
-      <y>660</y>
+      <x>880</x>
+      <y>590</y>
       <width>51</width>
       <height>21</height>
      </rect>
@@ -633,10 +601,29 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>10</string>
+     <string>0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QtMaterialRadioButton" name="algorithm_stc_horizonal">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>691</y>
+      <width>131</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>STC-平行</string>
     </property>
    </widget>
    <zorder>label</zorder>
@@ -648,7 +635,7 @@
    <zorder>algorithm_tnam_diagonal</zorder>
    <zorder>algorithm_tnam_horizonal</zorder>
    <zorder>algorithm_trnam</zorder>
-   <zorder>algorithm_stc</zorder>
+   <zorder>algorithm_stc_vertical</zorder>
    <zorder>variance_slider</zorder>
    <zorder>clearLog</zorder>
    <zorder>helpCenter</zorder>
@@ -656,14 +643,12 @@
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>mean_value_slider</zorder>
-   <zorder>label_5</zorder>
-   <zorder>fast_threshold_slider</zorder>
    <zorder>label_6</zorder>
    <zorder>epsilon_slider</zorder>
    <zorder>epsilon_label</zorder>
-   <zorder>fast_threshold_label</zorder>
    <zorder>mean_value_label</zorder>
    <zorder>variance_label</zorder>
+   <zorder>algorithm_stc_horizonal</zorder>
   </widget>
  </widget>
  <customwidgets>

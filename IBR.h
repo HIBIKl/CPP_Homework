@@ -28,7 +28,7 @@ struct Block
 
 struct ColorNode
 {
-	//0ÆÕÍ¨¾ØÕó£¬1¿íÎª1¾ØÕó£¬2³¤Îª1¾ØÕó£¬3¹ÂÁ¢µã
+	//0æ™®é€šçŸ©é˜µï¼Œ1å®½ä¸º1çŸ©é˜µï¼Œ2é•¿ä¸º1çŸ©é˜µï¼Œ3å­¤ç«‹ç‚¹
 	int kind,g1,g2,g3,g4;
 	ColorNode(int k,int gg1,int gg2=-1,int gg3=-1,int gg4=-1):kind(k),g1(gg1),g2(gg2),g3(gg3),g4(gg4){};
 	ColorNode(){};

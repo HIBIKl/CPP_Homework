@@ -2,7 +2,15 @@
 #include "IBR.h"
 #include "STC.h"
 
-//测试数据： .\Total.exe .\lena512.bmp 1.bmp 2.bmp
+//参数表
+long compression_time;//编码时间
+long decode_time;//解码时间
+unsigned long long blocks;//块数
+double psnr_value;//psnr值
+double bpp_value;//bpp值
+double cr_value;//cr值
+long long qsc_time;//qsc处理时间
+int region_nums; //区域数量
 
 //Diagonal参数：分别输入1.原灰度图 2.转灰度图文件名 3.解码后的文件名 4.EPSILON
 int diag_main(const char* argv1,const char* argv2,const char* argv3,const char* argv4)
@@ -10,8 +18,10 @@ int diag_main(const char* argv1,const char* argv2,const char* argv3,const char* 
     if (argv1 != NULL) {
         Mat img = imread(argv1);
         if (!img.empty()) {
-            namedWindow("原图灰度图像", 1);
-            imshow("原图灰度图像", img);
+
+            //namedWindow("原图灰度图像", 1);
+            //imshow("原图灰度图像", img);
+
             /*一，分割同类块及编码*/
             int M = img.rows;
             int N = img.cols;
@@ -25,8 +35,6 @@ int diag_main(const char* argv1,const char* argv2,const char* argv3,const char* 
             vector<char> coordinateList;
             int xigema = atoi(argv4);
 
-            //MyTimer mt;
-            //mt.Start();
 
             time_t begin1,end1,begin2,end2;
             begin1 = clock();
@@ -39,43 +47,48 @@ int diag_main(const char* argv1,const char* argv2,const char* argv3,const char* 
             //mt.End();
             end1 = clock();
 
-            //cout << "编码压缩花费:" << mt.costTime << "ms" << endl;
-            //mt.Reset();
 
             cout << "编码压缩花费:" << end1 - begin1 << "ms" << endl;
-
+            compression_time = end1-begin1;
             /*二，还原图像矩阵及图像*/
             Mat T = Mat::zeros(M, N, CV_8UC1);
 
-            //mt.Start();
             begin2 = clock();
             Decode(T, M, N, coordinateList);
             RNAMCDecoding(T, M, N, colorList, coordinateList);
-            //mt.End();
             end2 = clock();
-            //cout << "还原图像耗时:" << mt.costTime << "ms" << endl;
-            //mt.Reset();
+
             cout << "还原图像耗时:" << end2 - begin2 << "ms" << endl;
+            decode_time = end2 - begin2;
 
             cout << "块数:" << colorList.size() << endl;
+            blocks = colorList.size();
+
             cout << "PSNR值:" << PSNR(img_gray, T, M, N) << endl;
-            double BPPValue = BPP(colorList, M, N, coordinateList);
-            cout << "BPP值:" << BPPValue << endl;
-            cout << "CR值:" << 8.0 / BPPValue << endl;
+            psnr_value = PSNR(img_gray, T, M, N);
 
-            namedWindow("压缩图灰度图像", 1);
-            imshow("压缩图灰度图像", T);
+            cout << "BPP值:" << BPP(colorList, M, N, coordinateList) << endl;
+            bpp_value = BPP(colorList, M, N, coordinateList);
 
-            imwrite(argv2, img_gray);//多出来的两行,输出文件
-            imwrite(argv3, T);//多出来的两行
+            cout << "CR值:" << 8.0 / bpp_value << endl;
+            cr_value = 8.0 / bpp_value;
+
+
+            //namedWindow("压缩图灰度图像", 1);
+            //imshow("压缩图灰度图像", T);
+
+            imwrite(argv2, img_gray);//输出灰度图
+            imwrite(argv3, T);//输出解码后图像
 
             /*分割图*/
             Mat display(M, N, CV_8UC1, Scalar::all(255));
             segmentDisplay(display, colorList);
-            namedWindow("分割图", 1);
-            imshow("分割图", display);
 
-            waitKey(2000);
+            //namedWindow("分割图", 1);
+            //imshow("分割图", display);
+            imwrite("./segment.bmp",display);
+            //等待
+            //waitKey(2000);
             destroyAllWindows();
             img.release();
             img_gray.release();
@@ -93,8 +106,10 @@ int hori_main(const char* argv1,const char* argv2,const char* argv3,const char* 
     if (argv1 != NULL) {
         Mat img = imread(argv1);
 		if (!img.empty()) {
-			namedWindow("原图灰度图像", 1);
-			imshow("原图灰度图像", img);
+
+            //namedWindow("原图灰度图像", 1);
+            //imshow("原图灰度图像", img);
+
 			/*一，分割同类块及编码*/
 			int M = img.rows;
 			int N = img.cols;
@@ -108,11 +123,6 @@ int hori_main(const char* argv1,const char* argv2,const char* argv3,const char* 
 			vector<char> coordinateList;
             int xigema = atoi(argv4);
 
-            //删掉Windows.h，解决ACCESS_MASK冲突
-            //MyTimer mt;
-            //mt.Start();
-
-            //更改计时函数以解决冲突
             time_t begin1,end1,begin2,end2;
             begin1 = clock();
 
@@ -121,44 +131,48 @@ int hori_main(const char* argv1,const char* argv2,const char* argv3,const char* 
 
 			/*矩阵编码*/
 			EnCode(R, M, N, coordinateList);
-            //mt.End();
             end1 = clock();
 
-            //cout << "编码压缩花费:" << mt.costTime << "ms" << endl;
+
             cout << "编码压缩花费:" << end1 - begin1 << "ms" << endl;
-            //mt.Reset();
+            compression_time = end1-begin1;
 
 			/*二，还原图像矩阵及图像*/
 			Mat T = Mat::zeros(M, N, CV_8UC1);
 
-            //mt.Start();
             begin2 = clock();
 			Decode(T, M, N, coordinateList);
 			RNAMCDecoding(T, M, N, colorList, coordinateList);
             end2 = clock();
-            //mt.End();
-            //cout << "还原图像耗时:" << mt.costTime << "ms" << endl;
+
             cout << "还原图像耗时:" << end2 - begin2 << "ms" << endl;
-            //mt.Reset();
+            decode_time = end2 - begin2;
 
-			cout << "块数:" << colorList.size() << endl;
-			cout << "PSNR值:" << PSNR(img_gray, T, M, N) << endl;
-			double BPPValue = BPP(colorList, M, N, coordinateList);
-			cout << "BPP值:" << BPPValue << endl;
-			cout << "CR值:" << 8.0 / BPPValue << endl;
+            cout << "块数:" << colorList.size() << endl;
+            blocks = colorList.size();
 
-			namedWindow("压缩图灰度图像", 1);
-			imshow("压缩图灰度图像", T);
+            cout << "PSNR值:" << PSNR(img_gray, T, M, N) << endl;
+            psnr_value = PSNR(img_gray, T, M, N);
+
+            cout << "BPP值:" << BPP(colorList, M, N, coordinateList) << endl;
+            bpp_value = BPP(colorList, M, N, coordinateList);
+
+            cout << "CR值:" << 8.0 / bpp_value << endl;
+            cr_value = 8.0 / bpp_value;
+
+            //namedWindow("压缩图灰度图像", 1);
+            //imshow("压缩图灰度图像", T);
             imwrite(argv2, img_gray);//多出来的两行
             imwrite(argv3, T);//多出来的两行
 
 			/*分割图*/
 			Mat display(M, N, CV_8UC1, Scalar::all(255));
 			segmentDisplay(display, colorList);
-			namedWindow("分割图", 1);
-			imshow("分割图", display);
+            //namedWindow("分割图", 1);
+            //imshow("分割图", display);
+            imwrite("./segment.bmp",display);
 
-            waitKey(2000);
+            //waitKey(2000);
 			destroyAllWindows();
 			img.release();
 			img_gray.release();
@@ -178,8 +192,8 @@ int ibr_main(const char* argv1,const char* argv2,const char* argv3,const char* a
     if ((img = cvLoadImage(argv1, 0)) != 0)
 	{
 
-		cvNamedWindow("原图灰度图像", 1);
-		cvShowImage("原图灰度图像", img);
+        //cvNamedWindow("原图灰度图像", 1);
+        //cvShowImage("原图灰度图像", img);
 		/*一，分割同类块及编码*/
 		int height = img->height;
 		int width = img->width;
@@ -203,7 +217,8 @@ int ibr_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 		EnCode(R, height, width, Q);
 		end = clock();
 
-		cout << "编码压缩花费:" << end - begin << "ms" << endl;
+        cout << "编码压缩花费:" << end - begin << "ms" << endl;
+        compression_time = end - begin;
 
 		/*for(int i =0;i<height;i++)
 		{
@@ -250,16 +265,21 @@ int ibr_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 
 
 		cout << "还原图像耗时:" << end - begin << "ms" << endl;
+        decode_time = end - begin;
 
+        cout << "块数:" << num << endl;
+        blocks = num;
 
-		cout << "块数:" << num << endl;
-		cout << "PSNR值:" << PSNR(img, newImg) << endl;
-		double BPPValue = BPP(color_list, width, height, Q);
-		cout << "BPP值:" << BPPValue << endl;
-		cout << "CR值:" << 8.0 / BPPValue << endl;
+        cout << "PSNR值:" << PSNR(img, newImg) << endl;
+        psnr_value = PSNR(img, newImg);
 
-		cvNamedWindow("压缩图灰度图像", 1);
-		cvShowImage("压缩图灰度图像", newImg);
+        cout << "BPP值:" << BPP(color_list, width, height, Q) << endl;
+        bpp_value = BPP(color_list, width, height, Q);
+
+        cout << "CR值:" << 8.0 / BPP(color_list, width, height, Q) << endl;
+        cr_value = 8.0 / BPP(color_list, width, height, Q);
+        //cvNamedWindow("压缩图灰度图像", 1);
+        //cvShowImage("压缩图灰度图像", newImg);
         cvSaveImage(argv2, img, 0);
         cvSaveImage(argv3, newImg, 0);
 
@@ -299,9 +319,10 @@ int ibr_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 			else   if (block_list[i].x1 != 0 && block_list[i].y1 != 0)
 				cvRectangle(sketch, cvPoint(block_list[i].x1 - 1, block_list[i].y1 - 1), cvPoint(block_list[i].x2, block_list[i].y2), cvScalar(0x00, 0x00, 0x00));
 		}
-		cvShowImage("分割示意图", sketch);
+        //cvShowImage("分割示意图", sketch);
+        cvSaveImage("./segment.bmp",sketch);
 
-        cvWaitKey(2000);
+        //cvWaitKey(2000);
 		cvDestroyAllWindows();
 	}
 
@@ -313,43 +334,8 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 {
     int nmb = 0;
 	IplImage* img1;
-	//cout << "start" << endl;
     if ((img1 = cvLoadImage(argv1, 0)) != 0)   //将源彩色图像img转化成目标灰色图像读入
-		//	if(( img1 = cvLoadImage("cameraman.tif", 0)) != 0)
-	{
-		//	 cout << "img readed" << endl;
-		  /*int sum=0;
-		  for (int row=0;row<img1->height;row++)
-		  {
-		  uchar* p=(uchar*) (img1->imageData+row*img1->widthStep);
-		  for (int col=0;col<img1->width;col++)
-		  {
-
-			  sum+=*p;
-			  printf("%3d ", *p++);
-
-			}
-			printf("\n\n");
-		   }
-			printf("\n%d\n",sum);*/
-
-			//// added by zyp begin
-		   //cout << "Display the data matrix of the source image:" << endl;
-			//for(int y = 0;y<img1->height;y++)
-		 //  {
-			   //	uchar* ptr = (uchar*) (img1->imageData+y*img1->widthStep);
-
-			   //	for (int x = 0;x<img1->width;x++)
-			   //	{
-			   //		printf ("%5d",*ptr++);
-			   //	}
-		 //          printf("\n\n");
-		 //  }
-			//// added by zyp end
-
-
-
-
+    {
 		time_t start, end, time, converge_start, converge_end, converge_time; //计时变量
 
 
@@ -369,18 +355,9 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 		InitialNode(root);
         thresU = atof(argv5);
         thresVar = atof(argv6);
-		//创建素描图像
-		IplImage* sketch = cvCreateImage(cvGetSize(img1), IPL_DEPTH_8U, 1);
-		/* for(int y = 0;y<M;y++)
-		  {
-			  uchar* ptrsketch = (uchar*) (sketch->imageData+y*sketch->widthStep);
 
-				  for (int x = 0;x<N;x++)
-				  {
-				   ptrsketch[x]=255;
-				  }
-		   }*/
-		   //素描图像初始化完成
+		//创建素描图像
+        //IplImage* sketch = cvCreateImage(cvGetSize(img1), IPL_DEPTH_8U, 1);
 
 		start = clock();
 		cout << "building tree" << endl;
@@ -391,7 +368,7 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 		end = clock();
 		time = end - start;
 		cout << "编码所用时间:" << time << "ms" << endl;
-
+        compression_time = time;
 
 
 		start = clock();
@@ -400,47 +377,42 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 
 		time = end - start;
 
-		ofstream fout("Results.txt");
+        //ofstream fout("Results.txt");
         cout << "解码所用时间:  " << time << "  ms" << endl << endl;
-
+        decode_time = time;
 		cout << "epsilon =  " << epsilon << endl << endl;
-		fout << "epsilon =  " << epsilon << endl << endl;
+
+        //fout << "epsilon =  " << epsilon << endl << endl;
 
 		cout << "================================================" << endl << endl;
 
 		//ofstream fout("Results.txt",ios::app);
 
 
-		cout << "块数:  " << P.size() << endl << endl;
-
-		fout << "块数:  " << P.size() << endl << endl;
+        cout << "块数:" << P.size() << endl << endl;
+        blocks = P.size();
+        //fout << "块数:" << P.size() << endl << endl;
 
 		cout << fixed << setprecision(4) << "BPP:" << BPP(P, M, N, Q) << endl << endl;
-		fout << fixed << setprecision(4) << "BPP:  " << BPP(P, M, N, Q) << endl << endl;
+        //fout << fixed << setprecision(4) << "BPP:" << BPP(P, M, N, Q) << endl << endl;
+        bpp_value = BPP(P, M, N, Q);
+        cout << fixed << setprecision(4)  << "CR:  " << 8.0/BPP ( P , M , N , Q ) << endl<<endl;
+        //fout << fixed << setprecision(4)  << "CR:  " << 8.0/BPP ( P , M , N , Q ) << endl<<endl;
+        cr_value = 8.0/BPP ( P , M , N , Q );
 
-		//cout << fixed << setprecision(4)  << "CR:  " << 8.0/BPP ( P , M , N , Q ) << endl<<endl;	
-		//fout << fixed << setprecision(4)  << "CR:  " << 8.0/BPP ( P , M , N , Q ) << endl<<endl;	
-
-
-
-
-
-
-
-		converge_start = clock();
+        converge_start = clock();
 		Region** all_region = new Region * [P.size()];
 
+        Segment* UpperLeft = new Segment;
 
-		Segment* UpperLeft = new Segment;
+        Segment* Upper = new Segment;
 
-		Segment* Upper = new Segment;
-
-		UpperLeft->Length = M;
+        UpperLeft->Length = M;
 		UpperLeft->ActiveELink = NULL;
 		UpperLeft->PreLink = NULL;
 		UpperLeft->SucLink = Upper;
 
-		Upper->Length = M;
+        Upper->Length = M;
 		Upper->ActiveELink = NULL;
 		Upper->PreLink = UpperLeft;
 		Upper->SucLink = NULL;
@@ -454,12 +426,14 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 
 		converge_end = clock();
 		converge_time = converge_end - converge_start;
-		cout << "converge_time of QSC:  " << converge_time << "  ms" << endl << endl;
 
-		fout << "converge_time of QSC:  " << converge_time << "  ms" << endl << endl;
+		cout << "converge_time of QSC:  " << converge_time << "  ms" << endl << endl;
+        qsc_time = converge_time;
+        cout<<"pooint 1"<<endl;
+        //fout << "converge_time of QSC:  " << converge_time << "  ms" << endl << endl;
 
 		Region** pixel_region = new Region * [M * N];
-
+        cout<<"pooint 2"<<endl;
 
 		IplImage* seg = cvCreateImage(cvGetSize(img1), IPL_DEPTH_8U, 1);
 		for (unsigned int i = 0; i < P.size(); i++)
@@ -478,7 +452,7 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 				}
 			}
 		}
-
+        cout<<"pooint 3"<<endl;
 
 		IplImage* seg_line = cvCreateImage(cvGetSize(img1), IPL_DEPTH_8U, 1);
 		for (int y = 0; y < M; y++)
@@ -497,7 +471,7 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 
 			}
 		}
-
+        cout<<"pooint 4"<<endl;
 
 		// added by zyp add box begin!
 		for (int y = 0; y < M; y++)
@@ -514,24 +488,27 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 		}
 		// added by zyp add box end!
 
-		cvShowImage("区域合并示意图1", seg);
-		cvShowImage("区域合并示意图2", seg_line);
-
+        //cvShowImage("区域合并示意图1", seg);
+        //cvShowImage("区域合并示意图2", seg_line);
+        cvSaveImage("region_merge_1.bmp",seg);
+        cvSaveImage("region_merge_2.bmp",seg_line);
 		MakeImggest(imggest, P, C, all_region);
 
 		cout << "PSNR of recontructured:  " << STC_PSNR(img1, imggest) << endl << endl;
+        psnr_value = STC_PSNR(img1, imggest);
 		//cout << "PSNR of segmentation:" << PSNR( img1 ,seg ) << endl<<endl;	
-		fout << "PSNR of recontructured:  " << STC_PSNR(img1, imggest) << endl << endl;
+        //fout << "PSNR of recontructured:  " << STC_PSNR(img1, imggest) << endl << endl;
 
-		cvNamedWindow("灰度化图像", CV_WINDOW_AUTOSIZE);
-		cvShowImage("灰度化图像", img1); //显示原始灰度图像
-		cvNamedWindow("QSC区域分割后的图像", CV_WINDOW_AUTOSIZE);     //区域分割后的图像
-		cvShowImage("QSC区域分割后的图像", imggest);//载入转化后的灰度图像   //区域分割后的图像
+        //cvNamedWindow("灰度化图像", CV_WINDOW_AUTOSIZE);
+        //cvShowImage("灰度化图像", img1); //显示原始灰度图像
+
+        //cvNamedWindow("QSC区域分割后的图像", CV_WINDOW_AUTOSIZE);     //区域分割后的图像
+        //cvShowImage("QSC区域分割后的图像", imggest);//载入转化后的灰度图像   //区域分割后的图像
 
         cvSaveImage(argv2, img1, 0);//把图像写入文件
         cvSaveImage(argv3, imggest, 0);//把图像写入文件
 		//画示意图
-		cvNamedWindow("分割示意图", CV_WINDOW_AUTOSIZE);
+        //cvNamedWindow("分割示意图", CV_WINDOW_AUTOSIZE);
 		if (N >= 256 || M >= 256)
 		{
 			//创建素描图像
@@ -566,7 +543,7 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 
 
 
-			cvShowImage("分割示意图", img1);//载入转化后的灰度图像 
+            //cvShowImage("分割示意图", img1);//载入转化后的灰度图像
 
 			//画示意图结束
 		}
@@ -598,7 +575,7 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 					cvRectangle(img1, cvPoint((C[i].x1 - 1) * xr, (C[i].y1 - 1) * yr), cvPoint(C[i].x2 * xr, C[i].y2 * yr), cvScalar(0x00, 0x00, 0x00));
 
 			}
-			cvShowImage("分割示意图", img1);//载入转化后的灰度图像 
+            //cvShowImage("分割示意图", img1);//载入转化后的灰度图像
 			//画示意图结束
 		}
 
@@ -609,66 +586,6 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 		cvSaveImage("二元树区域合并示意图2.bmp", seg_line, 0);//把图像写入文件 , added by zyp
 
 
-		//// added by zyp begin
-	   //cout << "Display the data matrix of the 二元树分割示意图.bmp:" << endl;
-		//for(int y = 0;y<img1->height;y++)
-	 //  {
-		   //	uchar* ptr = (uchar*) (img1->imageData+y*img1->widthStep);
-
-		   //	for (int x = 0;x<img1->width;x++)
-		   //	{
-		   //		printf ("%5d",*ptr++);
-		   //	}
-	 //          printf("\n\n");
-	 //  }
-		//// added by zyp end
-
-
-		//// added by zyp begin
-	   //cout << "Display the data matrix of the 二元树区域分割后的图像.bmp:" << endl;
-		//for(int y = 0;y<imggest->height;y++)
-	 //  {
-		   //	uchar* ptr = (uchar*) (imggest->imageData+y*imggest->widthStep);
-
-		   //	for (int x = 0;x<imggest->width;x++)
-		   //	{
-		   //		printf ("%5d",*ptr++);
-		   //	}
-	 //          printf("\n\n");
-	 //  }
-		//// added by zyp end
-
-
-		//// added by zyp begin
-	   //cout << "Display the data matrix of the 二元树区域合并示意图1.bmp:" << endl;
-		//for(int y = 0;y<seg->height;y++)
-	 //  {
-		   //	uchar* ptr = (uchar*) (seg->imageData+y*seg->widthStep);
-
-		   //	for (int x = 0;x<seg->width;x++)
-		   //	{
-		   //		printf ("%5d",*ptr++);
-		   //	}
-	 //          printf("\n\n");
-	 //  }
-		//// added by zyp end
-
-
-		//// added by zyp begin
-	   //cout << "Display the data matrix of the 二元树区域合并示意图2.bmp:" << endl;
-		//for(int y = 0;y<seg_line->height;y++)
-	 //  {
-		   //	uchar* ptr = (uchar*) (seg_line->imageData+y*seg_line->widthStep);
-
-		   //	for (int x = 0;x<seg_line->width;x++)
-		   //	{
-		   //		printf ("%5d",*ptr++);
-		   //	}
-	 //          printf("\n\n");
-	 //  }
-		//// added by zyp end
-
-
 		for (int i = 0; i < C.size(); i++)
 		{
 			if (C[i].x2 - C[i].x1 == 1)
@@ -677,33 +594,32 @@ int stc_main(const char* argv1,const char* argv2,const char* argv3,const char* a
 		}
 
 		//cout << "2*2块数量："<< nmb << endl;
-		cout << "区域数量：  " << reg_num << endl << endl;
-
-		fout << "区域数量：  " << reg_num << endl << endl;
+        cout << "区域数量：  " << reg_num << endl << endl;
+        region_nums = reg_num;
+        //fout << "区域数量：  " << reg_num << endl << endl;
 		//分隔符
 		cout << "================================================" << endl << endl;
-		fout.close();
+        //fout.close();
 
 
-		cvWaitKey(0); //等待按键
-
-
-		cvReleaseImage(&img1);
+        //cvWaitKey(2000); //等待按键
+        cvReleaseImage(&img1);
 		cvReleaseImage(&imggest);
+        cvReleaseImage(&seg);
+        cvReleaseImage(&seg_line);
 		cvDestroyAllWindows();//关闭
-
-		//无用代码
-		//char zyp;
-		//cin >> zyp; 
-
-
+        delete seg;
+        delete[] pixel_region;
+        delete root;
+        delete[] all_region;
+        delete UpperLeft;
+        delete Upper;
 		return 0;
+    }
 
-	}
+    else
 
-	else
-
-		return -1;
+        return -1;
 
 }
 
