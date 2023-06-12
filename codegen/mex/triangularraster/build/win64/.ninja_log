@@ -1,0 +1,22 @@
+# ninja log v5
+19	525	7082624766931627	build/win64/triangularraster_data.obj	bdccebaffd182017
+0	547	7082624767096341	build/win64/triangularraster_terminate.obj	df255660eb2a75f4
+14	591	7082624767091345	build/win64/rt_nonfinite.obj	9923cff28315df7f
+32	597	7082624767150496	build/win64/_coder_triangularraster_mex.obj	877ef49b4b474ee3
+24	607	7082624767244940	build/win64/triangularraster_initialize.obj	491e7501dcaabc36
+43	613	7082624767271089	build/win64/triu.obj	bab7d22b7de628d8
+56	624	7082624767298524	build/win64/timeKeeper.obj	3366ec268cda7991
+52	630	7082624767380339	build/win64/tic.obj	c79f65f35dcd1936
+60	640	7082624768012176	build/win64/imread.obj	f0e0ef8adf6d4409
+530	791	7082624769513418	build/win64/warning.obj	34a845f7138d9775
+641	815	7082624769695321	build/win64/cpp_mexapi_version.obj	e653259722319b9b
+592	818	7082624769803783	build/win64/eml_int_forloop_overflow_check.obj	d465820e8e4da5ab
+578	834	7082624770010913	build/win64/toc.obj	6d44afcaa7bc1ae5
+625	836	7082624770021048	build/win64/triangularraster_mexutil.obj	47377c57b327c031
+631	842	7082624770057200	build/win64/_coder_triangularraster_info.obj	a1676629106f2918
+608	1011	7082624771781331	build/win64/sumMatrixIncludeNaN.obj	6706d1bd419e8e77
+599	1012	7082624771798252	build/win64/sum.obj	c5be74d87a4baed0
+614	1059	7082624772266029	build/win64/_coder_triangularraster_api.obj	6ff65882bc798dc1
+10	1091	7082624772583211	build/win64/triangularraster.obj	39dcb21a6293cee5
+793	1100	7082624772698313	build/win64/tril.obj	76e39182fa7b401d
+1101	1193	7082624773619404	triangularraster_mex.mexw64	5061c363fa5d2ea3

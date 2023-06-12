@@ -1,0 +1,122 @@
+[
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  triangularraster_data.cpp /Fobuild\\win64\\triangularraster_data.obj",
+    "file": "triangularraster_data.cpp",
+    "output": "build/win64/triangularraster_data.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  rt_nonfinite.cpp /Fobuild\\win64\\rt_nonfinite.obj",
+    "file": "rt_nonfinite.cpp",
+    "output": "build/win64/rt_nonfinite.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  triangularraster_initialize.cpp /Fobuild\\win64\\triangularraster_initialize.obj",
+    "file": "triangularraster_initialize.cpp",
+    "output": "build/win64/triangularraster_initialize.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  triangularraster_terminate.cpp /Fobuild\\win64\\triangularraster_terminate.obj",
+    "file": "triangularraster_terminate.cpp",
+    "output": "build/win64/triangularraster_terminate.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  triangularraster.cpp /Fobuild\\win64\\triangularraster.obj",
+    "file": "triangularraster.cpp",
+    "output": "build/win64/triangularraster.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  tic.cpp /Fobuild\\win64\\tic.obj",
+    "file": "tic.cpp",
+    "output": "build/win64/tic.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  timeKeeper.cpp /Fobuild\\win64\\timeKeeper.obj",
+    "file": "timeKeeper.cpp",
+    "output": "build/win64/timeKeeper.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  imread.cpp /Fobuild\\win64\\imread.obj",
+    "file": "imread.cpp",
+    "output": "build/win64/imread.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  sum.cpp /Fobuild\\win64\\sum.obj",
+    "file": "sum.cpp",
+    "output": "build/win64/sum.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  sumMatrixIncludeNaN.cpp /Fobuild\\win64\\sumMatrixIncludeNaN.obj",
+    "file": "sumMatrixIncludeNaN.cpp",
+    "output": "build/win64/sumMatrixIncludeNaN.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  toc.cpp /Fobuild\\win64\\toc.obj",
+    "file": "toc.cpp",
+    "output": "build/win64/toc.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  interface\\_coder_triangularraster_api.cpp /Fobuild\\win64\\_coder_triangularraster_api.obj",
+    "file": "interface/_coder_triangularraster_api.cpp",
+    "output": "build/win64/_coder_triangularraster_api.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  interface\\_coder_triangularraster_mex.cpp /Fobuild\\win64\\_coder_triangularraster_mex.obj",
+    "file": "interface/_coder_triangularraster_mex.cpp",
+    "output": "build/win64/_coder_triangularraster_mex.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  eml_int_forloop_overflow_check.cpp /Fobuild\\win64\\eml_int_forloop_overflow_check.obj",
+    "file": "eml_int_forloop_overflow_check.cpp",
+    "output": "build/win64/eml_int_forloop_overflow_check.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  warning.cpp /Fobuild\\win64\\warning.obj",
+    "file": "warning.cpp",
+    "output": "build/win64/warning.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  triu.cpp /Fobuild\\win64\\triu.obj",
+    "file": "triu.cpp",
+    "output": "build/win64/triu.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  tril.cpp /Fobuild\\win64\\tril.obj",
+    "file": "tril.cpp",
+    "output": "build/win64/tril.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  triangularraster_mexutil.cpp /Fobuild\\win64\\triangularraster_mexutil.obj",
+    "file": "triangularraster_mexutil.cpp",
+    "output": "build/win64/triangularraster_mexutil.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  interface\\_coder_triangularraster_info.cpp /Fobuild\\win64\\_coder_triangularraster_info.obj",
+    "file": "interface/_coder_triangularraster_info.cpp",
+    "output": "build/win64/_coder_triangularraster_info.obj"
+  },
+  {
+    "directory": "D:\\school\\作业\\C++\\matlab\\codegen\\mex\\triangularraster",
+    "command": "cl /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I \".\" /I \"D:\\school\\作业\\C++\\matlab\" /I \"D:\\matlab\\extern\\include\" /I \".\\interface\" /I \".\" -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251  D:\\matlab\\extern\\version\\cpp_mexapi_version.cpp /Fobuild\\win64\\cpp_mexapi_version.obj",
+    "file": "D:/matlab/extern/version/cpp_mexapi_version.cpp",
+    "output": "build/win64/cpp_mexapi_version.obj"
+  }
+]

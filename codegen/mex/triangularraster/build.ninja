@@ -1,0 +1,63 @@
+# CompilerName=msvcpp170
+# Mode=optim
+ninja_required_version = 1.3
+
+# Basic folders
+root = .
+builddir = $root\build\win64
+matlabdir = D:\matlab
+startdir = D:\school\作业\C++\matlab
+
+# Toolchain information
+cc = cl
+cxx = cl
+linker = link
+linkerxx = link
+
+cflags =  /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I "$root" /I "$startdir" /I "$matlabdir\extern\include" /I "$root\interface" /I "." -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251 
+
+cxxflags =   /c /Zc:__cplusplus /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /utf-8 /I "$root" /I "$startdir" /I "$matlabdir\extern\include" /I "$root\interface" /I "." -DMODEL=triangularraster_mex -DMW_NEEDS_VERSION_H /wd4251 
+
+ldflags =  /nologo /manifest   /DLL /LIBPATH:"$matlabdir\extern\lib\win64\microsoft" libmx.lib libmex.lib libmat.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib libMatlabDataArray.lib libMatlabEngine.lib  /out:"triangularraster_mex.mexw64" libemlrt.lib libcovrt.lib libut.lib libmwmathutil.lib 
+
+linkobjs =  "$matlabdir\extern\lib\win64\microsoft\libmwjpegreader.lib"
+
+# Build Rules
+rule cc
+    command = $cc $cflags $in /Fo$out
+
+rule cxx
+    command = $cxx $cxxflags $in /Fo$out
+
+rule link
+    command = $linker @$out.rsp $linkobjs $ldflags
+    rspfile = $out.rsp
+    rspfile_content = $in
+
+rule linkxx
+    command = $linkerxx $in $linkobjs $ldflags
+
+# Build
+build $builddir\triangularraster_data.obj : cxx $root\triangularraster_data.cpp
+build $builddir\rt_nonfinite.obj : cxx $root\rt_nonfinite.cpp
+build $builddir\triangularraster_initialize.obj : cxx $root\triangularraster_initialize.cpp
+build $builddir\triangularraster_terminate.obj : cxx $root\triangularraster_terminate.cpp
+build $builddir\triangularraster.obj : cxx $root\triangularraster.cpp
+build $builddir\tic.obj : cxx $root\tic.cpp
+build $builddir\timeKeeper.obj : cxx $root\timeKeeper.cpp
+build $builddir\imread.obj : cxx $root\imread.cpp
+build $builddir\sum.obj : cxx $root\sum.cpp
+build $builddir\sumMatrixIncludeNaN.obj : cxx $root\sumMatrixIncludeNaN.cpp
+build $builddir\toc.obj : cxx $root\toc.cpp
+build $builddir\_coder_triangularraster_api.obj : cxx $root\interface\_coder_triangularraster_api.cpp
+build $builddir\_coder_triangularraster_mex.obj : cxx $root\interface\_coder_triangularraster_mex.cpp
+build $builddir\eml_int_forloop_overflow_check.obj : cxx $root\eml_int_forloop_overflow_check.cpp
+build $builddir\warning.obj : cxx $root\warning.cpp
+build $builddir\triu.obj : cxx $root\triu.cpp
+build $builddir\tril.obj : cxx $root\tril.cpp
+build $builddir\triangularraster_mexutil.obj : cxx $root\triangularraster_mexutil.cpp
+build $builddir\_coder_triangularraster_info.obj : cxx $root\interface\_coder_triangularraster_info.cpp
+build $builddir\cpp_mexapi_version.obj : cxx $matlabdir\extern\version\cpp_mexapi_version.cpp
+
+# Link
+build $root\triangularraster_mex.mexw64 : linkxx $builddir\triangularraster_data.obj $builddir\rt_nonfinite.obj $builddir\triangularraster_initialize.obj $builddir\triangularraster_terminate.obj $builddir\triangularraster.obj $builddir\tic.obj $builddir\timeKeeper.obj $builddir\imread.obj $builddir\sum.obj $builddir\sumMatrixIncludeNaN.obj $builddir\toc.obj $builddir\_coder_triangularraster_api.obj $builddir\_coder_triangularraster_mex.obj $builddir\eml_int_forloop_overflow_check.obj $builddir\warning.obj $builddir\triu.obj $builddir\tril.obj $builddir\triangularraster_mexutil.obj $builddir\_coder_triangularraster_info.obj $builddir\cpp_mexapi_version.obj 

@@ -1,0 +1,11 @@
+﻿coder_posix_time.obj
+triangularraster_data.obj
+triangularraster_initialize.obj
+triangularraster_terminate.obj
+triangularraster.obj
+tic.obj
+timeKeeper.obj
+imread.obj
+sum.obj
+toc.obj
+CoderTimeAPI.obj
