@@ -1,3 +1,4 @@
+#include "main_algorithm.h"
 #include "widget.h"
 #include "qboxlayout.h"
 #include "ui_widget.h"
@@ -14,19 +15,17 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/calib3d/calib3d.hpp>
 #include <QButtonGroup>
-#include "Diag_and_Hori.h"
-#include "IBR.h"
-#include "STC.h"
+
 
 //using namespace std;
 using namespace Material;
 
     //--------------------------------------------//
-    //需要实现的特性：
-    //1.未选择参数时弹窗提醒选择参数（图片、sigma、算法等）
-    //2.处理完之后弹窗提醒
-    //3.QtMaterialScrollBar实现控制台实时输出处理日志
-    //4.一点点彩蛋...?
+    //README
+    //1.
+    //2.
+    //3.
+    //4.
     //--------------------------------------------//
 
 
@@ -36,7 +35,7 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    setWindowTitle("Homework Test");
+    setWindowTitle("Picture Process Tool");
 
 
     //关闭恼人的特性
@@ -50,33 +49,33 @@ Widget::Widget(QWidget *parent)
 
     //修改颜色
     {
-    ui->startCompression->setBackgroundColor(QColor(78, 76, 151));
-    ui->helpCenter->setBackgroundColor(QColor(78, 76, 151));
-    ui->clearLog->setBackgroundColor(QColor(78, 76, 151));
-    ui->saveImage->setBackgroundColor(QColor(78, 76, 151));
-    ui->selectPicture->setBackgroundColor(QColor(78, 76, 151));
+    ui->startCompression->setBackgroundColor(QColor(12, 99, 67));
+    ui->helpCenter->setBackgroundColor(QColor(12, 99, 67));
+    ui->clearLog->setBackgroundColor(QColor(12, 99, 67));
+    ui->saveImage->setBackgroundColor(QColor(12, 99, 67));
+    ui->selectPicture->setBackgroundColor(QColor(12, 99, 67));
 
-    ui->algorithm_tnam_diagonal->setCheckedColor(QColor(78, 76, 151));
-    ui->algorithm_tnam_horizonal->setCheckedColor(QColor(78, 76, 151));
-    ui->algorithm_ibr->setCheckedColor(QColor(78, 76, 151));
-    ui->algorithm_stc_vertical->setCheckedColor(QColor(78, 76, 151));
-    ui->algorithm_trnam->setCheckedColor(QColor(78, 76, 151));
-    ui->algorithm_stc_horizonal->setCheckedColor(QColor(78, 76, 151));
-    ui->algorithm_tnam_horizonal->setCheckedColor(QColor(78, 76, 151));
-    ui->algorithm_tnam_diagonal->setCheckedColor(QColor(78, 76, 151));
-    ui->algorithm_ibr->setCheckedColor(QColor(78, 76, 151));
+    ui->algorithm_tnam_diagonal->setCheckedColor(QColor(12, 99, 67));
+    ui->algorithm_tnam_horizonal->setCheckedColor(QColor(12, 99, 67));
+    ui->algorithm_ibr->setCheckedColor(QColor(12, 99, 67));
+    ui->algorithm_stc_vertical->setCheckedColor(QColor(12, 99, 67));
+    ui->algorithm_trnam->setCheckedColor(QColor(12, 99, 67));
+    ui->algorithm_stc_horizonal->setCheckedColor(QColor(12, 99, 67));
+    ui->algorithm_tnam_horizonal->setCheckedColor(QColor(12, 99, 67));
+    ui->algorithm_tnam_diagonal->setCheckedColor(QColor(12, 99, 67));
+    ui->algorithm_ibr->setCheckedColor(QColor(12, 99, 67));
 
-    ui->epsilon_slider->setThumbColor(QColor(78, 76, 151));//左边轨道的颜色
-    ui->epsilon_slider->setDisabledColor(QColor(78, 76, 151));
-    ui->epsilon_slider->setTrackColor(QColor(78, 76, 151));
+    ui->epsilon_slider->setThumbColor(QColor(12, 99, 67));//左边轨道的颜色
+    ui->epsilon_slider->setDisabledColor(QColor(12, 99, 67));
+    ui->epsilon_slider->setTrackColor(QColor(12, 99, 67));
 
-    ui->mean_value_slider->setThumbColor(QColor(78, 76, 151));
-    ui->mean_value_slider->setDisabledColor(QColor(78, 76, 151));
-    ui->mean_value_slider->setTrackColor(QColor(78, 76, 151));
+    ui->mean_value_slider->setThumbColor(QColor(12, 99, 67));
+    ui->mean_value_slider->setDisabledColor(QColor(12, 99, 67));
+    ui->mean_value_slider->setTrackColor(QColor(12, 99, 67));
 
-    ui->variance_slider->setThumbColor(QColor(78, 76, 151));
-    ui->variance_slider->setDisabledColor(QColor(78, 76, 151));
-    ui->variance_slider->setTrackColor(QColor(78, 76, 151));
+    ui->variance_slider->setThumbColor(QColor(12, 99, 67));
+    ui->variance_slider->setDisabledColor(QColor(12, 99, 67));
+    ui->variance_slider->setTrackColor(QColor(12, 99, 67));
     }
 
     //修改圆角半径
@@ -127,14 +126,14 @@ QString variance; //方差阀值
 QString cutmethod; //切法 1 水平 0垂直
 
 //输出参数表
-extern long compression_time;//编码时间
-extern long decode_time;//解码时间
-extern unsigned long long blocks;//块数
-extern double psnr_value;//psnr值
-extern double bpp_value;//bpp值
-extern double cr_value;//cr值
-extern long long qsc_time;//qsc处理时间
-extern int region_nums; //区域数量
+long compression_time;//编码时间
+long decode_time;//解码时间
+unsigned long long blocks;//块数
+double psnr_value;//psnr值
+double bpp_value;//bpp值
+double cr_value;//cr值
+long long qsc_time;//qsc处理时间
+int region_nums; //区域数量
 
 //处理参数
 const char* qstringToConstChar(const QString& qstr)
@@ -152,19 +151,24 @@ void Widget::on_selectPicture_clicked()
     QString curPath=QDir::currentPath();//获取系统当前目录
     QString dlgTitle="Select a file:"; //对话框标题
     QString filter="Image(*.jpg *.png *.bmp)"; //文件过滤器
-    selectedFilePath =QFileDialog::getOpenFileName(this,dlgTitle,curPath,filter);
+    QString tempPath = QFileDialog::getOpenFileName(this,dlgTitle,curPath,filter);
+    if(tempPath.isNull() != 1 )
+        selectedFilePath = tempPath;
 
     //图片显示到UI上
     QPixmap pixmap(selectedFilePath);
-    pixmap = pixmap.scaled(421, 421, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    if(pixmap.isNull()!=1)
+    {
+    pixmap = pixmap.scaled(450, 450, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->label->setPixmap(pixmap);
     ui->label->show();
+    }
 
     //控制台输出
     if (!selectedFilePath.isEmpty())
     {
         //更改输出颜色
-        ui->textBrowser->setTextColor(QColor(78, 76, 151));
+        ui->textBrowser->setTextColor(QColor(12, 99, 67));
         ui->textBrowser->append("-----------SELECT IMAGE-----------");
         ui->textBrowser->setTextColor(QColor(0,0,0));
         ui->textBrowser->append("IMAGE PATH:");
@@ -188,19 +192,18 @@ void Widget::on_saveImage_clicked()
 //传递参数并开始压缩
 void Widget::on_startCompression_clicked()
 {
-
+    main_algorithm mainAlgorithm;
     const char* argv1 = qstringToConstChar(selectedFilePath);
     const char* argv4 = qstringToConstChar(epsilon);
     const char* argv5 = qstringToConstChar(mean_value);
     const char* argv6 = qstringToConstChar(variance);
 
     //显示参数
-    ui->textBrowser->setTextColor(QColor(78, 76, 151));
+    ui->textBrowser->setTextColor(QColor(12, 99, 67));
     ui->textBrowser->append("----------SET PARAMETERS----------");
     ui->textBrowser->setTextColor(QColor(0,0,0));
-
     ui->textBrowser->append("USE EPSILON:");
-        ui->textBrowser->append(argv4);
+    ui->textBrowser->append(argv4);
     if(ui->algorithm_stc_horizonal->isChecked() == true)
     {
         ui->textBrowser->append("Mean Value Threshold:");
@@ -209,6 +212,13 @@ void Widget::on_startCompression_clicked()
         ui->textBrowser->append(argv6);
         ui->textBrowser->append("Cutting Method:");
         ui->textBrowser->append("Horizonal");
+        ui->textBrowser->append("SAVED GREY IMAGE TO:");
+        ui->textBrowser->append("./gray_image.bmp");
+        ui->textBrowser->append("SAVED DECODED IMAGE TO:");
+        ui->textBrowser->append("./decoded_image.bmp");
+        ui->textBrowser->append("SAVED SEGMENT IMAGE TO:");
+        ui->textBrowser->append("./segment.bmp");
+        ui->textBrowser->append("./segment_and_rebuild.bmp");
     }
     else if(ui->algorithm_stc_vertical->isChecked() == true)
     {
@@ -218,76 +228,87 @@ void Widget::on_startCompression_clicked()
         ui->textBrowser->append(argv6);
         ui->textBrowser->append("Cutting Method:");
         ui->textBrowser->append("Vertical");
+        ui->textBrowser->append("SAVED GREY IMAGE TO:");
+        ui->textBrowser->append("./gray_image.bmp");
+        ui->textBrowser->append("SAVED DECODED IMAGE TO:");
+        ui->textBrowser->append("./decoded_image.bmp");
+        ui->textBrowser->append("SAVED SEGMENT IMAGE TO:");
+        ui->textBrowser->append("./segment.bmp");
+        ui->textBrowser->append("./segment_and_rebuild.bmp");
     }
-    ui->textBrowser->append("SAVED GREY IMAGE TO:");
-    ui->textBrowser->append("./gray_image.bmp");
-    ui->textBrowser->append("SAVED DECODED IMAGE TO:");
-    ui->textBrowser->append("./decoded_image.bmp");
-    ui->textBrowser->append("SAVED SEGMENT IMAGE TO:");
-    ui->textBrowser->append("./segment.bmp");
+    else
+    {
+        ui->textBrowser->append("SAVED GREY IMAGE TO:");
+        ui->textBrowser->append("./gray_image.bmp");
+        ui->textBrowser->append("SAVED DECODED IMAGE TO:");
+        ui->textBrowser->append("./decoded_image.bmp");
+        ui->textBrowser->append("SAVED SEGMENT IMAGE TO:");
+        ui->textBrowser->append("./segment.bmp");
+    }
+
 
     //开始处理
-    ui->textBrowser->setTextColor(QColor(78, 76, 151));
+    ui->textBrowser->setTextColor(QColor(12, 99, 67));
     ui->textBrowser->append("----------PROCESS START----------");
     ui->textBrowser->setTextColor(QColor(0,0,0));
 
+    //选择处理算法
     if(ui->algorithm_tnam_diagonal->isChecked() == true)
-        diag_main(argv1,argv2,argv3,argv4);
+        mainAlgorithm.diag_main(argv1,argv2,argv3,argv4);
     if(ui->algorithm_tnam_horizonal->isChecked() == true)
-        hori_main(argv1,argv2,argv3,argv4);
+        mainAlgorithm.hori_main(argv1,argv2,argv3,argv4);
     if(ui->algorithm_ibr->isChecked() == true)
-        ibr_main(argv1,argv2,argv3,argv4);
+        mainAlgorithm.ibr_main(argv1,argv2,argv3,argv4);
     if(ui->algorithm_stc_vertical->isChecked() == true)
-        stc_main(argv1,argv2,argv3,argv4,argv5,argv6,"0");
+        mainAlgorithm.stc_main(argv1,argv2,argv3,argv4,argv5,argv6,"0");
     if(ui->algorithm_stc_horizonal->isChecked() == true)
-        stc_main(argv1,argv2,argv3,argv4,argv5,argv6,"1");
-
+        mainAlgorithm.stc_main(argv1,argv2,argv3,argv4,argv5,argv6,"1");
 
     //输出参数到日志
     if(ui->algorithm_stc_horizonal->isChecked() == true || ui->algorithm_stc_vertical->isChecked() == true)
     {
         ui->textBrowser->append("Compression Time(ms):");
-        ui->textBrowser->append(QString::number(compression_time));
+        ui->textBrowser->append(QString::number(mainAlgorithm.compression_time));
 
         ui->textBrowser->append("Decode Time(ms):");
-        ui->textBrowser->append(QString::number(decode_time));
+        ui->textBrowser->append(QString::number(mainAlgorithm.decode_time));
 
         ui->textBrowser->append("Blocks Used:");
-        ui->textBrowser->append(QString::number(blocks));
+        ui->textBrowser->append(QString::number(mainAlgorithm.blocks));
 
         ui->textBrowser->append("PSNR Value:");
-        ui->textBrowser->append(QString::number(psnr_value));
+        ui->textBrowser->append(QString::number(mainAlgorithm.psnr_value));
 
         ui->textBrowser->append("BPP Value:");
-        ui->textBrowser->append(QString::number(bpp_value));
+        ui->textBrowser->append(QString::number(mainAlgorithm.bpp_value));
 
         ui->textBrowser->append("CR Value:");
-        ui->textBrowser->append(QString::number(cr_value));
+        ui->textBrowser->append(QString::number(mainAlgorithm.cr_value));
 
         ui->textBrowser->append("QSC Converge Time:");
-        ui->textBrowser->append(QString::number(qsc_time));
+        ui->textBrowser->append(QString::number(mainAlgorithm.qsc_time));
 
         ui->textBrowser->append("Number of Regions:");
-        ui->textBrowser->append(QString::number(region_nums));
+        ui->textBrowser->append(QString::number(mainAlgorithm.region_nums));
     }
     else
     {
         ui->textBrowser->append("Compression Time(ms):");
-        ui->textBrowser->append(QString::number(compression_time));
+        ui->textBrowser->append(QString::number(mainAlgorithm.compression_time));
 
         ui->textBrowser->append("Decode Time(ms):");
-        ui->textBrowser->append(QString::number(decode_time));
+        ui->textBrowser->append(QString::number(mainAlgorithm.decode_time));
         ui->textBrowser->append("Blocks Used:");
-        ui->textBrowser->append(QString::number(blocks));
+        ui->textBrowser->append(QString::number(mainAlgorithm.blocks));
 
         ui->textBrowser->append("PSNR Value:");
-        ui->textBrowser->append(QString::number(psnr_value));
+        ui->textBrowser->append(QString::number(mainAlgorithm.psnr_value));
 
         ui->textBrowser->append("BPP Value:");
-        ui->textBrowser->append(QString::number(bpp_value));
+        ui->textBrowser->append(QString::number(mainAlgorithm.bpp_value));
 
         ui->textBrowser->append("CR Value:");
-        ui->textBrowser->append(QString::number(cr_value));
+        ui->textBrowser->append(QString::number(mainAlgorithm.cr_value));
     }
 
     //重置参数
@@ -298,10 +319,10 @@ void Widget::on_startCompression_clicked()
 
     //显示解码后图像
     QPixmap pixmap("./decoded_image.bmp");
-    pixmap = pixmap.scaled(421, 421, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    pixmap = pixmap.scaled(450, 450, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     ui->label_2->setPixmap(pixmap);
     ui->label_2->show();
-    ui->textBrowser->setTextColor(QColor(78, 76, 151));
+    ui->textBrowser->setTextColor(QColor(12, 99, 67));
     ui->textBrowser->append("-----------PROCESS END------------");
     ui->textBrowser->append("                                  ");
     ui->textBrowser->setTextColor(QColor(0,0,0));
@@ -309,7 +330,7 @@ void Widget::on_startCompression_clicked()
 }
 
 
-//按钮和滑块的槽函数
+//按钮和滑块
 void Widget::on_algorithm_tnam_diagonal_clicked()
 {
     ui->algorithm_tnam_diagonal->setChecked(true);
@@ -356,29 +377,33 @@ void Widget::on_algorithm_ibr_clicked()
 //滑块
 void Widget::on_epsilon_slider_valueChanged(int value)
 {
-    epsilon = QString::number(value,10);
+    double val=double(value)/10;
+    epsilon = QString::number(val, 'f', 1);
     ui->epsilon_label->setText(epsilon);
 
 }
 
 void Widget::on_mean_value_slider_valueChanged(int value)
 {
-    mean_value = QString::number(value,10);
+    double val=double(value)/10;
+    mean_value = QString::number(val, 'f', 1);
     ui->mean_value_label->setText(mean_value);
 }
 
 void Widget::on_variance_slider_valueChanged(int value)
 {
-    variance = QString::number(value,10);
+    double val=double(value)/10;
+    variance = QString::number(val, 'f', 1);
     ui->variance_label->setText(variance);
 }
 
+//清空日志
 void Widget::on_clearLog_released()
 {
     ui->textBrowser->clear();
 }
 
-
+//帮助按钮
 void Widget::on_helpCenter_clicked()
 {
 
@@ -430,5 +455,4 @@ void Widget::on_helpCenter_clicked()
 
     dialog->show();
 }
-
 

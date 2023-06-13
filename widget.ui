@@ -74,7 +74,7 @@
      </font>
     </property>
     <property name="text">
-     <string>开始压缩</string>
+     <string>开始处理</string>
     </property>
    </widget>
    <widget class="QtMaterialRaisedButton" name="saveImage">
@@ -82,7 +82,7 @@
      <rect>
       <x>509</x>
       <y>730</y>
-      <width>211</width>
+      <width>201</width>
       <height>51</height>
      </rect>
     </property>
@@ -129,7 +129,7 @@
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -149,7 +149,7 @@
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
       <bold>false</bold>
       <kerning>true</kerning>
      </font>
@@ -176,7 +176,7 @@
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -196,7 +196,7 @@
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -207,7 +207,7 @@
    <widget class="QtMaterialRadioButton" name="algorithm_stc_vertical">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>820</x>
       <y>651</y>
       <width>131</width>
       <height>27</height>
@@ -216,7 +216,7 @@
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
       <bold>false</bold>
      </font>
     </property>
@@ -237,7 +237,7 @@
      <cursorShape>ClosedHandCursor</cursorShape>
     </property>
     <property name="maximum">
-     <number>50</number>
+     <number>500</number>
     </property>
     <property name="singleStep">
      <number>5</number>
@@ -275,9 +275,9 @@
    <widget class="QtMaterialRaisedButton" name="helpCenter">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>750</x>
       <y>730</y>
-      <width>221</width>
+      <width>211</width>
       <height>51</height>
      </rect>
     </property>
@@ -427,7 +427,7 @@ color:grey</string>
      </font>
     </property>
     <property name="text">
-     <string>方差阀值</string>
+     <string>方差阈值</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -447,7 +447,7 @@ color:grey</string>
      </font>
     </property>
     <property name="text">
-     <string>均值阀值</string>
+     <string>均值阈值</string>
     </property>
    </widget>
    <widget class="QtMaterialSlider" name="mean_value_slider">
@@ -463,7 +463,7 @@ color:grey</string>
      <cursorShape>ClosedHandCursor</cursorShape>
     </property>
     <property name="maximum">
-     <number>50</number>
+     <number>500</number>
     </property>
     <property name="singleStep">
      <number>5</number>
@@ -514,7 +514,7 @@ color:grey</string>
      <string notr="true"/>
     </property>
     <property name="maximum">
-     <number>50</number>
+     <number>500</number>
     </property>
     <property name="singleStep">
      <number>5</number>
@@ -549,7 +549,7 @@ color:grey</string>
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>0</string>
+     <string>0.0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -575,7 +575,7 @@ color:grey</string>
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>0</string>
+     <string>0.0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -601,7 +601,7 @@ color:grey</string>
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>0</string>
+     <string>0.0</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -610,7 +610,7 @@ color:grey</string>
    <widget class="QtMaterialRadioButton" name="algorithm_stc_horizonal">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>820</x>
       <y>691</y>
       <width>131</width>
       <height>27</height>
@@ -619,7 +619,7 @@ color:grey</string>
     <property name="font">
      <font>
       <family>微软雅黑</family>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">

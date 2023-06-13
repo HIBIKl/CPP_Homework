@@ -1,5 +1,4 @@
 //组件库头文件
-#include "qdialog.h"
 #include "widget.h"
 #include <QApplication>
 #include <QSplashScreen>
@@ -16,16 +15,16 @@ int main(int argc, char **argv)
     Q_INIT_RESOURCE(resources);
     //---------------开始界面-----------------------//
     QSplashScreen *startScreen = new QSplashScreen();
-    startScreen->setPixmap(QPixmap("D:/Pictures/Screenshots/bar.png"));//开始界面图片，得ps一个
+    startScreen->setPixmap(QPixmap("C:/Users/perfsakuya/Desktop/LenaRGB.bmp"));//开始界面图片，得ps一个
     startScreen->show();
-    Qt::Alignment bottomLeft = Qt::AlignRight | Qt::AlignBottom;
+    //Qt::Alignment bottomLeft = Qt::AlignRight | Qt::AlignBottom;
     QFont splashFont;
     splashFont.setFamily("Consolas");
     splashFont.setPointSize(18);
     splashFont.setBold(true);
     startScreen->setFont(splashFont);
-    startScreen->showMessage(QString("Loading..."),bottomLeft,Qt::white);
-    QThread::sleep(1);
+    startScreen->showMessage(QString("Loading..."),Qt::AlignRight | Qt::AlignBottom,Qt::white);
+    QThread::sleep(2);
     delete startScreen;
     //---------------结束开始界面--------------------//
 
