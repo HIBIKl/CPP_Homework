@@ -42,6 +42,8 @@ private slots:
 
     void on_helpCenter_clicked();
 
+    void on_algorithm_only_to_gray_clicked();
+
 public slots:
 
 signals:

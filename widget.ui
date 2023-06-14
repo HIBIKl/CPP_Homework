@@ -120,9 +120,9 @@
    <widget class="QtMaterialRadioButton" name="algorithm_ibr">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>700</x>
       <y>691</y>
-      <width>121</width>
+      <width>111</width>
       <height>27</height>
      </rect>
     </property>
@@ -155,7 +155,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TNAM-垂直</string>
+     <string>RNAMC-垂直</string>
     </property>
     <property name="checkable">
      <bool>true</bool>
@@ -181,15 +181,15 @@
      </font>
     </property>
     <property name="text">
-     <string>TNAM-水平</string>
+     <string>RNAMC-水平</string>
     </property>
    </widget>
-   <widget class="QtMaterialRadioButton" name="algorithm_trnam">
+   <widget class="QtMaterialRadioButton" name="algorithm_only_to_gray">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>700</x>
       <y>651</y>
-      <width>121</width>
+      <width>111</width>
       <height>27</height>
      </rect>
     </property>
@@ -201,7 +201,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TRNAM</string>
+     <string>转灰度</string>
     </property>
    </widget>
    <widget class="QtMaterialRadioButton" name="algorithm_stc_vertical">
@@ -435,7 +435,7 @@ color:grey</string>
      <rect>
       <x>530</x>
       <y>550</y>
-      <width>111</width>
+      <width>91</width>
       <height>23</height>
      </rect>
     </property>
@@ -483,7 +483,7 @@ color:grey</string>
      <rect>
       <x>530</x>
       <y>510</y>
-      <width>111</width>
+      <width>91</width>
       <height>23</height>
      </rect>
     </property>
@@ -634,7 +634,7 @@ color:grey</string>
    <zorder>algorithm_ibr</zorder>
    <zorder>algorithm_tnam_diagonal</zorder>
    <zorder>algorithm_tnam_horizonal</zorder>
-   <zorder>algorithm_trnam</zorder>
+   <zorder>algorithm_only_to_gray</zorder>
    <zorder>algorithm_stc_vertical</zorder>
    <zorder>variance_slider</zorder>
    <zorder>clearLog</zorder>

@@ -2564,9 +2564,7 @@ public:
         IplImage* img1;
         if ((img1 = cvLoadImage(argv1, 0)) != 0)   //将源彩色图像img转化成目标灰色图像读入
         {
-            //
             STC stc;
-            //
             time_t start, end, time, converge_start, converge_end, converge_time; //计时变量
 
 
@@ -2852,11 +2850,8 @@ public:
 
             return 0;
         }
-
         else
-
-        return -1;
-
+            return -1;
     }
 
 };

@@ -969,4 +969,7 @@
         <file>icons/social/svg/production/ic_share_24px.svg</file>
         <file>icons/social/svg/production/ic_whatshot_24px.svg</file>
     </qresource>
+    <qresource prefix="/startscreen">
+        <file>startscreen_highres.png</file>
+    </qresource>
 </RCC>
